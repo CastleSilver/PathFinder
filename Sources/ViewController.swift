@@ -6,12 +6,19 @@
 //
 
 import UIKit
+import Lottie
 
 class ViewController: UIViewController {
-
+    @IBOutlet weak var logoImage: UIImageView!
+    @IBOutlet weak var animationView: LottieAnimationView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        // add lottie animation
+        animationView!.contentMode = .scaleAspectFill
+        animationView!.loopMode = .loop
+        self.view.addSubview(animationView!)
+        animationView!.play()
     }
 
 
