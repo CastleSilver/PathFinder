@@ -9,7 +9,6 @@ import UIKit
 import Lottie
 
 class ViewController: UIViewController {
-    @IBOutlet weak var logoImage: UIImageView!
     @IBOutlet weak var animationView: LottieAnimationView!
     
     override func viewDidLoad() {
