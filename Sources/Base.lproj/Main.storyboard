@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mEI-ut-wXd">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -9,20 +9,20 @@
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <scene sceneID="Eyl-fZ-Kbu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PathFinder" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <viewController id="mEI-ut-wXd" customClass="ViewController" customModule="PathFinder" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Lmy-Fc-FBI">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fko-bl-9Ym">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="WcS-6V-5XZ">
                                 <rect key="frame" x="0.0" y="83" width="393" height="250"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="250" id="fhd-G4-6yR"/>
+                                    <constraint firstAttribute="height" constant="250" id="6dw-43-Uod"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hem-eC-T1v" customClass="LottieAnimationView" customModule="Lottie">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j8Z-cH-sG3" customClass="LottieAnimationView" customModule="Lottie">
                                 <rect key="frame" x="0.0" y="345" width="393" height="473"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <userDefinedRuntimeAttributes>
@@ -30,29 +30,33 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <viewLayoutGuide key="safeArea" id="HGd-ti-jLC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Fko-bl-9Ym" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Alc-Ag-8il"/>
-                            <constraint firstItem="Hem-eC-T1v" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="BvH-LI-HWX"/>
-                            <constraint firstItem="Hem-eC-T1v" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Da7-TD-QUr"/>
-                            <constraint firstItem="Hem-eC-T1v" firstAttribute="top" secondItem="Fko-bl-9Ym" secondAttribute="bottom" constant="12" id="cPN-3m-wwz"/>
-                            <constraint firstItem="Hem-eC-T1v" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dVf-oo-rKP"/>
-                            <constraint firstItem="Fko-bl-9Ym" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="24" id="uAf-I7-quo"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Fko-bl-9Ym" secondAttribute="trailing" id="w3W-kW-LVR"/>
+                            <constraint firstItem="j8Z-cH-sG3" firstAttribute="leading" secondItem="HGd-ti-jLC" secondAttribute="leading" id="6yH-9E-3Oe"/>
+                            <constraint firstItem="j8Z-cH-sG3" firstAttribute="trailing" secondItem="HGd-ti-jLC" secondAttribute="trailing" id="H0x-jN-AFg"/>
+                            <constraint firstItem="j8Z-cH-sG3" firstAttribute="bottom" secondItem="HGd-ti-jLC" secondAttribute="bottom" id="UIS-lb-lbv"/>
+                            <constraint firstItem="HGd-ti-jLC" firstAttribute="trailing" secondItem="WcS-6V-5XZ" secondAttribute="trailing" id="Y5H-pB-bXf"/>
+                            <constraint firstItem="WcS-6V-5XZ" firstAttribute="top" secondItem="HGd-ti-jLC" secondAttribute="top" constant="24" id="YNv-ID-JSc"/>
+                            <constraint firstItem="j8Z-cH-sG3" firstAttribute="top" secondItem="WcS-6V-5XZ" secondAttribute="bottom" constant="12" id="cb7-6k-NaF"/>
+                            <constraint firstItem="WcS-6V-5XZ" firstAttribute="leading" secondItem="HGd-ti-jLC" secondAttribute="leading" id="px9-Db-DN6"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="animationView" destination="Hem-eC-T1v" id="s3A-lk-to2"/>
-                        <outlet property="logoImage" destination="Fko-bl-9Ym" id="Flz-xg-xHs"/>
+                        <outlet property="animationView" destination="j8Z-cH-sG3" id="bMA-vc-P8l"/>
+                        <outlet property="logoImage" destination="WcS-6V-5XZ" id="Uax-s4-nvX"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fGd-1m-cq8" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="130.53435114503816" y="-34.507042253521128"/>
+            <point key="canvasLocation" x="265" y="74"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="j8Z-cH-sG3"/>
+    </designables>
     <resources>
+        <image name="logo.png" width="856" height="651"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

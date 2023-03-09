@@ -14,6 +14,7 @@
 		5C4F3C9529B8521F00A219AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C4F3C9429B8521F00A219AF /* Assets.xcassets */; };
 		5C4F3C9829B8521F00A219AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C4F3C9629B8521F00A219AF /* LaunchScreen.storyboard */; };
 		5C4F3CA229B96B2200A219AF /* splash-image.json in Resources */ = {isa = PBXBuildFile; fileRef = 5C4F3CA129B96B2200A219AF /* splash-image.json */; };
+		5C4F3CA429B96E4B00A219AF /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4F3CA329B96E4B00A219AF /* logo.png */; };
 		E6BC2C9ED02A6B07342EDFCE /* Pods_PathFinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE37737D64487992E935B429 /* Pods_PathFinder.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		5C4F3C9729B8521F00A219AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5C4F3C9929B8521F00A219AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C4F3CA129B96B2200A219AF /* splash-image.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "splash-image.json"; sourceTree = "<group>"; };
+		5C4F3CA329B96E4B00A219AF /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = "../../../../Desktop/허성은/pathfinder/logo.png"; sourceTree = "<group>"; };
 		DE37737D64487992E935B429 /* Pods_PathFinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PathFinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -81,6 +83,7 @@
 		5C4F3C9F29B8522F00A219AF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5C4F3CA329B96E4B00A219AF /* logo.png */,
 				5C4F3CA129B96B2200A219AF /* splash-image.json */,
 			);
 			path = Resources;
@@ -171,6 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C4F3CA229B96B2200A219AF /* splash-image.json in Resources */,
+				5C4F3CA429B96E4B00A219AF /* logo.png in Resources */,
 				5C4F3C9829B8521F00A219AF /* LaunchScreen.storyboard in Resources */,
 				5C4F3C9529B8521F00A219AF /* Assets.xcassets in Resources */,
 				5C4F3C9329B8521E00A219AF /* Main.storyboard in Resources */,
