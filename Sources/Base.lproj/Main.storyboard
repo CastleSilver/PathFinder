@@ -22,16 +22,28 @@
                                     <constraint firstAttribute="height" constant="250" id="fhd-G4-6yR"/>
                                 </constraints>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hem-eC-T1v" customClass="LottieAnimationView" customModule="Lottie">
+                                <rect key="frame" x="0.0" y="345" width="393" height="473"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="splash-image"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Fko-bl-9Ym" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Alc-Ag-8il"/>
+                            <constraint firstItem="Hem-eC-T1v" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="BvH-LI-HWX"/>
+                            <constraint firstItem="Hem-eC-T1v" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Da7-TD-QUr"/>
+                            <constraint firstItem="Hem-eC-T1v" firstAttribute="top" secondItem="Fko-bl-9Ym" secondAttribute="bottom" constant="12" id="cPN-3m-wwz"/>
+                            <constraint firstItem="Hem-eC-T1v" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dVf-oo-rKP"/>
                             <constraint firstItem="Fko-bl-9Ym" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="24" id="uAf-I7-quo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Fko-bl-9Ym" secondAttribute="trailing" id="w3W-kW-LVR"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="animationView" destination="Hem-eC-T1v" id="s3A-lk-to2"/>
                         <outlet property="logoImage" destination="Fko-bl-9Ym" id="Flz-xg-xHs"/>
                     </connections>
                 </viewController>
