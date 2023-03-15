@@ -9,14 +9,29 @@
 /* Begin PBXBuildFile section */
 		5C4F3C8C29B8521E00A219AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4F3C8B29B8521E00A219AF /* AppDelegate.swift */; };
 		5C4F3C8E29B8521E00A219AF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4F3C8D29B8521E00A219AF /* SceneDelegate.swift */; };
-		5C4F3C9029B8521E00A219AF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4F3C8F29B8521E00A219AF /* ViewController.swift */; };
+		5C4F3C9029B8521E00A219AF /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4F3C8F29B8521E00A219AF /* SplashViewController.swift */; };
 		5C4F3C9329B8521E00A219AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C4F3C9129B8521E00A219AF /* Main.storyboard */; };
 		5C4F3C9529B8521F00A219AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C4F3C9429B8521F00A219AF /* Assets.xcassets */; };
 		5C4F3CA229B96B2200A219AF /* splash-image.json in Resources */ = {isa = PBXBuildFile; fileRef = 5C4F3CA129B96B2200A219AF /* splash-image.json */; };
 		5C4F3CA429B96E4B00A219AF /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4F3CA329B96E4B00A219AF /* logo.png */; };
 		5C4F3CA829B99B4900A219AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C4F3CA729B99B4900A219AF /* LaunchScreen.storyboard */; };
+		5C4F3CAA29BAD6FE00A219AF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4F3CA929BAD6FE00A219AF /* MainViewController.swift */; };
+		5CD3551D29C1514400419724 /* ViewSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD3551C29C1514400419724 /* ViewSetting.swift */; };
 		E6BC2C9ED02A6B07342EDFCE /* Pods_PathFinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE37737D64487992E935B429 /* Pods_PathFinder.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5CD3551329C0391100419724 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0CCB4AA460E8C9A9E0CBEFDD /* Pods-PathFinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PathFinder.debug.xcconfig"; path = "Target Support Files/Pods-PathFinder/Pods-PathFinder.debug.xcconfig"; sourceTree = "<group>"; };
@@ -24,13 +39,15 @@
 		5C4F3C8829B8521E00A219AF /* PathFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PathFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C4F3C8B29B8521E00A219AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5C4F3C8D29B8521E00A219AF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5C4F3C8F29B8521E00A219AF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5C4F3C8F29B8521E00A219AF /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		5C4F3C9229B8521E00A219AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5C4F3C9429B8521F00A219AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5C4F3C9929B8521F00A219AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C4F3CA129B96B2200A219AF /* splash-image.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "splash-image.json"; sourceTree = "<group>"; };
 		5C4F3CA329B96E4B00A219AF /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = "../../../../Desktop/허성은/pathfinder/logo.png"; sourceTree = "<group>"; };
 		5C4F3CA729B99B4900A219AF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5C4F3CA929BAD6FE00A219AF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		5CD3551C29C1514400419724 /* ViewSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSetting.swift; sourceTree = "<group>"; };
 		DE37737D64487992E935B429 /* Pods_PathFinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PathFinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -71,11 +88,13 @@
 			children = (
 				5C4F3C8B29B8521E00A219AF /* AppDelegate.swift */,
 				5C4F3C8D29B8521E00A219AF /* SceneDelegate.swift */,
-				5C4F3C8F29B8521E00A219AF /* ViewController.swift */,
+				5C4F3C8F29B8521E00A219AF /* SplashViewController.swift */,
 				5C4F3C9129B8521E00A219AF /* Main.storyboard */,
 				5C4F3C9429B8521F00A219AF /* Assets.xcassets */,
 				5C4F3C9929B8521F00A219AF /* Info.plist */,
 				5C4F3CA729B99B4900A219AF /* LaunchScreen.storyboard */,
+				5C4F3CA929BAD6FE00A219AF /* MainViewController.swift */,
+				5CD3551C29C1514400419724 /* ViewSetting.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -125,6 +144,7 @@
 				5C4F3C8529B8521E00A219AF /* Frameworks */,
 				5C4F3C8629B8521E00A219AF /* Resources */,
 				ABBB7697BF15041962512C06 /* [CP] Embed Pods Frameworks */,
+				5CD3551329C0391100419724 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -230,9 +250,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C4F3C9029B8521E00A219AF /* ViewController.swift in Sources */,
+				5C4F3C9029B8521E00A219AF /* SplashViewController.swift in Sources */,
 				5C4F3C8C29B8521E00A219AF /* AppDelegate.swift in Sources */,
+				5CD3551D29C1514400419724 /* ViewSetting.swift in Sources */,
 				5C4F3C8E29B8521E00A219AF /* SceneDelegate.swift in Sources */,
+				5C4F3CAA29BAD6FE00A219AF /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,7 +322,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -354,7 +376,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -373,6 +395,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XRWYG766B9;
+				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/lottie-ios\"",
+					"\"$(PROJECT_DIR)/Frameworks/TMapSDK\"",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Sources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -386,6 +415,18 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"Lottie\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"UIKit\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.se.PathFinder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -406,6 +447,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XRWYG766B9;
+				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/lottie-ios\"",
+					"\"$(PROJECT_DIR)/Frameworks\"",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Sources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -419,6 +467,18 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"Lottie\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"UIKit\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = kr.co.se.PathFinder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

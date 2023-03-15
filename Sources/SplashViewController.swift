@@ -8,7 +8,7 @@
 import UIKit
 import Lottie
 
-class ViewController: UIViewController {
+class SplashViewController: UIViewController {
     @IBOutlet weak var animationView: LottieAnimationView!
     
     override func viewDidLoad() {
