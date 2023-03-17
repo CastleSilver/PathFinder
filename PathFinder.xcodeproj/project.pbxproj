@@ -13,10 +13,10 @@
 		5C4F3C9329B8521E00A219AF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C4F3C9129B8521E00A219AF /* Main.storyboard */; };
 		5C4F3C9529B8521F00A219AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C4F3C9429B8521F00A219AF /* Assets.xcassets */; };
 		5C4F3CA229B96B2200A219AF /* splash-image.json in Resources */ = {isa = PBXBuildFile; fileRef = 5C4F3CA129B96B2200A219AF /* splash-image.json */; };
-		5C4F3CA429B96E4B00A219AF /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4F3CA329B96E4B00A219AF /* logo.png */; };
 		5C4F3CA829B99B4900A219AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C4F3CA729B99B4900A219AF /* LaunchScreen.storyboard */; };
 		5C4F3CAA29BAD6FE00A219AF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4F3CA929BAD6FE00A219AF /* MainViewController.swift */; };
 		5CD3551D29C1514400419724 /* ViewSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD3551C29C1514400419724 /* ViewSetting.swift */; };
+		5CD3552129C32F7700419724 /* LocationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD3552029C32F7700419724 /* LocationTest.swift */; };
 		E6BC2C9ED02A6B07342EDFCE /* Pods_PathFinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE37737D64487992E935B429 /* Pods_PathFinder.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,10 +44,10 @@
 		5C4F3C9429B8521F00A219AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5C4F3C9929B8521F00A219AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C4F3CA129B96B2200A219AF /* splash-image.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "splash-image.json"; sourceTree = "<group>"; };
-		5C4F3CA329B96E4B00A219AF /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = "../../../../Desktop/허성은/pathfinder/logo.png"; sourceTree = "<group>"; };
 		5C4F3CA729B99B4900A219AF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5C4F3CA929BAD6FE00A219AF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		5CD3551C29C1514400419724 /* ViewSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSetting.swift; sourceTree = "<group>"; };
+		5CD3552029C32F7700419724 /* LocationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTest.swift; sourceTree = "<group>"; };
 		DE37737D64487992E935B429 /* Pods_PathFinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PathFinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -95,6 +95,7 @@
 				5C4F3CA729B99B4900A219AF /* LaunchScreen.storyboard */,
 				5C4F3CA929BAD6FE00A219AF /* MainViewController.swift */,
 				5CD3551C29C1514400419724 /* ViewSetting.swift */,
+				5CD3552029C32F7700419724 /* LocationTest.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -102,7 +103,6 @@
 		5C4F3C9F29B8522F00A219AF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5C4F3CA329B96E4B00A219AF /* logo.png */,
 				5C4F3CA129B96B2200A219AF /* splash-image.json */,
 			);
 			path = Resources;
@@ -194,7 +194,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C4F3CA229B96B2200A219AF /* splash-image.json in Resources */,
-				5C4F3CA429B96E4B00A219AF /* logo.png in Resources */,
 				5C4F3C9529B8521F00A219AF /* Assets.xcassets in Resources */,
 				5C4F3CA829B99B4900A219AF /* LaunchScreen.storyboard in Resources */,
 				5C4F3C9329B8521E00A219AF /* Main.storyboard in Resources */,
@@ -252,6 +251,7 @@
 			files = (
 				5C4F3C9029B8521E00A219AF /* SplashViewController.swift in Sources */,
 				5C4F3C8C29B8521E00A219AF /* AppDelegate.swift in Sources */,
+				5CD3552129C32F7700419724 /* LocationTest.swift in Sources */,
 				5CD3551D29C1514400419724 /* ViewSetting.swift in Sources */,
 				5C4F3C8E29B8521E00A219AF /* SceneDelegate.swift in Sources */,
 				5C4F3CAA29BAD6FE00A219AF /* MainViewController.swift in Sources */,
@@ -395,6 +395,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XRWYG766B9;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -447,6 +448,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XRWYG766B9;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				EXCLUDED_ARCHS = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

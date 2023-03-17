@@ -16,16 +16,19 @@ class SplashViewController: UIViewController {
         // add lottie animation
         animationView!.contentMode = .scaleAspectFill
         animationView!.loopMode = .playOnce
-        view.addSubview(animationView!)
         animationView!.play()
         
-        // 5초 후 메인 화면으로 이동
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-                    let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
-                    self.navigationController?.pushViewController(viewController, animated: true)
-                }
+        // Splash 화면에서 5초 후에 실행
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            self.showNavigationController()
+        }
     }
-
-
+    
+    // 5초 후에 실행될 함수
+    func showNavigationController() {
+        let navigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "NavigationController") as! UINavigationController
+        // 현재 보여지고 있는 뷰 컨트롤러를 네비게이션 컨트롤러로 교체
+        UIApplication.shared.windows.first?.rootViewController = navigationController
+    }
 }
 

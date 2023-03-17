@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IX0-ar-KD7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GGE-nv-vXp">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -12,18 +12,19 @@
         <!--Navigation Controller-->
         <scene sceneID="5bg-if-fi2">
             <objects>
-                <navigationController id="IX0-ar-KD7" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="IX0-ar-KD7" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="h9L-If-SDU"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="iNs-c0-bBH">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="GGE-nv-vXp" kind="relationship" relationship="rootViewController" id="uiF-fG-32O"/>
+                        <segue destination="GsN-de-6ar" kind="relationship" relationship="rootViewController" id="4hv-MI-ZdO"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Mm-e9-JT1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-650" y="-18"/>
+            <point key="canvasLocation" x="106" y="-30"/>
         </scene>
         <!--Splash View Controller-->
         <scene sceneID="L5R-rW-b1i">
@@ -33,14 +34,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="bhm-7Y-c3k">
-                                <rect key="frame" x="0.0" y="127" width="393" height="250"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="bhm-7Y-c3k">
+                                <rect key="frame" x="0.0" y="83" width="393" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="Zk8-up-apB"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mfd-ec-K93" customClass="LottieAnimationView" customModule="Lottie">
-                                <rect key="frame" x="0.0" y="392" width="393" height="426"/>
+                                <rect key="frame" x="0.0" y="348" width="393" height="470"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="splash-image"/>
@@ -62,26 +63,26 @@
                     <navigationItem key="navigationItem" id="sae-eI-MHt"/>
                     <connections>
                         <outlet property="animationView" destination="mfd-ec-K93" id="Cfp-Wb-kpE"/>
-                        <segue destination="GsN-de-6ar" kind="show" id="EGb-ou-vIZ"/>
+                        <segue destination="IX0-ar-KD7" kind="show" id="h7c-59-Yre"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iP9-aC-S8o" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="145.80152671755724" y="-17.605633802816904"/>
+            <point key="canvasLocation" x="-752" y="-18"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="zPC-rD-msA">
             <objects>
                 <viewController storyboardIdentifier="MainViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GsN-de-6ar" customClass="MainViewController" customModule="PathFinder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a0S-YS-dWp">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ayF-FZ-T4A" customClass="NMFMapView">
-                                <rect key="frame" x="0.0" y="44" width="393" height="774"/>
+                                <rect key="frame" x="0.0" y="-3" width="393" height="786"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rW9-3Y-sBg">
-                                        <rect key="frame" x="0.0" y="574" width="393" height="200"/>
+                                        <rect key="frame" x="0.0" y="586" width="393" height="200"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k9L-wM-qVN">
                                                 <rect key="frame" x="15" y="18" width="363" height="105"/>
@@ -238,7 +239,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="e1U-2F-lZo"/>
                     <connections>
-                        <outlet property="belowView" destination="rW9-3Y-sBg" id="S9u-SO-bcM"/>
                         <outlet property="mapView" destination="ayF-FZ-T4A" id="Iyu-nZ-99Q"/>
                         <outlet property="nextButton" destination="D7i-Jr-8Jj" id="IwH-Nz-e6p"/>
                     </connections>
@@ -277,10 +277,13 @@
             <point key="canvasLocation" x="1902" y="-30"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="mfd-ec-K93"/>
+    </designables>
     <resources>
         <image name="arrival" width="21.333333969116211" height="21.333333969116211"/>
         <image name="depart" width="21.333333969116211" height="21.333333969116211"/>
-        <image name="logo.png" width="856" height="651"/>
+        <image name="logo" width="856" height="651"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
