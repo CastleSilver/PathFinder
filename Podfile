@@ -6,6 +6,6 @@ target 'PathFinder' do
   use_frameworks!
 
   # Pods for PathFinder
-  pod 'lottie-ios'
-
+    pod 'NMapsMap'
+    pod 'lottie-ios'
 end
