@@ -8,16 +8,17 @@
 //import XCTest
 //import CoreLocation
 //
-//@testable import Pods_PathFinder
-//
+//@testable import PathFinder
+
 //class LocationTest: XCTestCase {
 //    var locationManager: CLLocationManager!
 //
 //    override func setUpWithError() throws {
 //        locationManager = CLLocationManager()
 //        locationManager.requestWhenInUseAuthorization()
+//        XCTFail()
 //    }
-//
+
 //    override func tearDownWithError() throws {
 //        locationManager = nil
 //    }
