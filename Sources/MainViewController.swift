@@ -9,7 +9,7 @@ import UIKit
 import NMapsMap
 import CoreLocation
 
-class MainViewController: UIViewController, CLLocationManagerDelegate, NMFMapViewDelegate {
+class MainViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var mapView: NMFMapView! /// 네이버 맵 지도 View
@@ -28,30 +28,100 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, NMFMapVie
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.setNavigationBarHidden(true, animated: true)
         mapView.delegate = self
         locationManager.delegate = self
         checkLocationAuthorization()
         /// 지도 유형 설정
         setMapSetting()
         buttonSetting()
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     // MARK: - Action Methods
     @IBAction func StartTabButton(_ sender: Any) {
         print("다음 버튼 클릭")
         guard let svc = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") else { return }
-        svc.modalTransitionStyle = UIModalTransitionStyle.coverVertical
-        self.present(svc, animated: true)
+        self.navigationController?.pushViewController(svc, animated: true)
+    }
+    
+    @IBAction func ArrivalTabButton(_ sender: Any) {
+        guard let svc = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") else { return }
+        self.navigationController?.pushViewController(svc, animated: true)
     }
     
     @IBAction func LocationButtonTapped(_ sender: Any) {
         print("내 위치 재조정")
-        locationButton.isEnabled = false
+        // 위치권한 체크하는 코드 추가 필요
         locationManager.startUpdatingLocation()
     }
     
     // MARK: - Methods
+    private func buttonSetting() {
+        self.nextButton.layer.cornerRadius = 5
+    }
+    
+    func setMyLocationMarker() {
+        if let myLocation = locationManager.location?.coordinate {
+            let image = UIImage(named: "my_location")
+            let overlayImage = NMFOverlayImage(image: image!)
+            self.mylocationMarker = NMFMarker(position: NMGLatLng(lat: myLocation.latitude, lng: myLocation.longitude), iconImage: overlayImage)
+            self.mylocationMarker?.mapView = mapView
+        }
+    }
+    
+    
+}
+
+extension MainViewController: CLLocationManagerDelegate {
+    
+    // 위치 업데이트 이벤트가 발생할 때 호출되는 델리게이트 메서드
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let currentLocation = locations.last else { return }
+        
+        if let marker = self.mylocationMarker {
+            marker.position = NMGLatLng(lat: currentLocation.coordinate.latitude, lng: currentLocation.coordinate.longitude)
+        } else {
+            let image = UIImage(named: "my_location")
+            let overlayImage = NMFOverlayImage(image: image!)
+            let marker = NMFMarker(position: NMGLatLng(lat: currentLocation.coordinate.latitude, lng: currentLocation.coordinate.longitude), iconImage: overlayImage)
+            marker.mapView = mapView
+            self.mylocationMarker = marker
+        }
+        
+        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: currentLocation.coordinate.latitude, lng: currentLocation.coordinate.longitude))
+        mapView.moveCamera(cameraUpdate)
+        
+        locationManager.stopUpdatingLocation()
+        locationButton.isEnabled = true
+    }
+    
+    func checkLocationAuthorization() {
+        switch CLLocationManager.authorizationStatus() {
+        case .authorizedWhenInUse:
+            print("위치 권한 확인")
+            locationManager.startUpdatingLocation()
+            setMyLocationMarker()
+        case .denied:
+            let alertController = UIAlertController(title: "위치 권한 필요", message: "해당 앱에서 위치 권한이 필수입니다. 위치 권한을 허용해주세요.", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "설정으로 이동", style: .default, handler: { (alertAction) in
+                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+            }))
+            alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+            present(alertController, animated: true, completion: nil)
+            break
+        case .notDetermined:
+            print("위치 권한 묻기")
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
+        default:
+            break
+        }
+    }
+}
+
+extension MainViewController: NMFMapViewDelegate {
+    
     @objc func mapViewIdle(_ mapView: NMFMapView) {
         addStartMarker() // 지도 이동이 멈추면 'startMarker' 마커 추가
     }
@@ -90,42 +160,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, NMFMapVie
         }
     }
     
-    private func buttonSetting() {
-        self.nextButton.layer.cornerRadius = 5
-    }
-    
-    func checkLocationAuthorization() {
-        switch CLLocationManager.authorizationStatus() {
-        case .authorizedWhenInUse:
-            print("위치 권한 확인")
-            locationManager.startUpdatingLocation()
-            setMyLocationMarker()
-        case .denied:
-            let alertController = UIAlertController(title: "위치 권한 필요", message: "해당 앱에서 위치 권한이 필수입니다. 위치 권한을 허용해주세요.", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "설정으로 이동", style: .default, handler: { (alertAction) in
-                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
-            }))
-            alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
-            present(alertController, animated: true, completion: nil)
-            break
-        case .notDetermined:
-            print("위치 권한 묻기")
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.startUpdatingLocation()
-        default:
-            break
-        }
-    }
-    
-    func setMyLocationMarker() {
-        if let myLocation = locationManager.location?.coordinate {
-            let image = UIImage(named: "my_location")
-            let overlayImage = NMFOverlayImage(image: image!)
-            self.mylocationMarker = NMFMarker(position: NMGLatLng(lat: myLocation.latitude, lng: myLocation.longitude), iconImage: overlayImage)
-            self.mylocationMarker?.mapView = mapView
-        }
-    }
-    
     private func setMapSetting() {
         print("맵 설정")
         mapView.mapType = .basic
@@ -141,26 +175,4 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, NMFMapVie
         mapView.minZoomLevel = 5
         mapView.maxZoomLevel = 22
     }
-    
-    // 위치 업데이트 이벤트가 발생할 때 호출되는 델리게이트 메서드
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let currentLocation = locations.last else { return }
-        
-        if let marker = self.mylocationMarker {
-            marker.position = NMGLatLng(lat: currentLocation.coordinate.latitude, lng: currentLocation.coordinate.longitude)
-        } else {
-            let image = UIImage(named: "my_location")
-            let overlayImage = NMFOverlayImage(image: image!)
-            let marker = NMFMarker(position: NMGLatLng(lat: currentLocation.coordinate.latitude, lng: currentLocation.coordinate.longitude), iconImage: overlayImage)
-            marker.mapView = mapView
-            self.mylocationMarker = marker
-        }
-        
-        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: currentLocation.coordinate.latitude, lng: currentLocation.coordinate.longitude))
-        mapView.moveCamera(cameraUpdate)
-        
-        locationManager.stopUpdatingLocation()
-        locationButton.isEnabled = true
-    }
-    
 }
