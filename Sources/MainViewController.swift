@@ -78,6 +78,7 @@ extension MainViewController: CLLocationManagerDelegate {
     // 위치 업데이트 이벤트가 발생할 때 호출되는 델리게이트 메서드
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let currentLocation = locations.last else { return }
+        locationManager.stopUpdatingLocation()
         
         if let marker = self.mylocationMarker {
             marker.position = NMGLatLng(lat: currentLocation.coordinate.latitude, lng: currentLocation.coordinate.longitude)
@@ -92,7 +93,6 @@ extension MainViewController: CLLocationManagerDelegate {
         let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: currentLocation.coordinate.latitude, lng: currentLocation.coordinate.longitude))
         mapView.moveCamera(cameraUpdate)
         
-        locationManager.stopUpdatingLocation()
         locationButton.isEnabled = true
     }
     

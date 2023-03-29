@@ -1,24 +1,28 @@
 PODS:
+  - Alamofire (5.6.4)
   - lottie-ios (4.1.3)
   - NMapsGeometry (1.0.1)
   - NMapsMap (3.16.2):
     - NMapsGeometry
 
 DEPENDENCIES:
+  - Alamofire (~> 5.5)
   - lottie-ios
   - NMapsMap
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - lottie-ios
     - NMapsGeometry
     - NMapsMap
 
 SPEC CHECKSUMS:
+  Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
   lottie-ios: d0954d3150061f662ed0adf96ef98d7421864c47
   NMapsGeometry: 53c573ead66466681cf123f99f698dc8071a4b83
   NMapsMap: aaa64717249b06ae82c3a3addb3a01f0e33100ab
 
-PODFILE CHECKSUM: 457914fda904a260fb0cb06e2c6335e8a2f5fcf8
+PODFILE CHECKSUM: 527d4e2902872c3839f20e86d2dce0048d577ff6
 
 COCOAPODS: 1.11.3
