@@ -152,19 +152,18 @@
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o2e-GA-o5D">
+                                                <rect key="frame" x="8" y="55" width="347" height="50"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <connections>
+                                                    <action selector="ArrivalTabButton:" destination="GsN-de-6ar" eventType="touchUpInside" id="slc-vg-ktT"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X9S-h9-SSt">
                                                 <rect key="frame" x="8" y="0.0" width="347" height="50"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <connections>
                                                     <action selector="StartTabButton:" destination="GsN-de-6ar" eventType="touchUpInside" id="N9m-fd-rK6"/>
-                                                </connections>
-                                            </button>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o2e-GA-o5D">
-                                                <rect key="frame" x="8" y="55" width="347" height="50"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain"/>
-                                                <connections>
-                                                    <action selector="ArrivalTabButton:" destination="GsN-de-6ar" eventType="touchUpInside" id="slc-vg-ktT"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fmo-Fw-GtJ">
@@ -186,22 +185,22 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
+                                            <constraint firstItem="o2e-GA-o5D" firstAttribute="bottom" secondItem="x07-28-8PP" secondAttribute="bottom" id="0K4-PJ-8v6"/>
                                             <constraint firstAttribute="bottom" secondItem="7GK-N8-JwB" secondAttribute="bottom" id="0vE-Vd-bnJ"/>
-                                            <constraint firstItem="o2e-GA-o5D" firstAttribute="bottom" secondItem="x07-28-8PP" secondAttribute="bottom" id="7sJ-kQ-Pp9"/>
-                                            <constraint firstItem="o2e-GA-o5D" firstAttribute="trailing" secondItem="x07-28-8PP" secondAttribute="trailing" id="AwE-kk-rxI"/>
                                             <constraint firstItem="7GK-N8-JwB" firstAttribute="top" secondItem="k9L-wM-qVN" secondAttribute="top" id="DQG-ID-PhF"/>
                                             <constraint firstItem="fmo-Fw-GtJ" firstAttribute="leading" secondItem="k9L-wM-qVN" secondAttribute="leading" constant="10" id="Gb9-1z-aBN"/>
                                             <constraint firstItem="fmo-Fw-GtJ" firstAttribute="centerY" secondItem="7GK-N8-JwB" secondAttribute="centerY" id="IIz-kk-NnC"/>
-                                            <constraint firstItem="o2e-GA-o5D" firstAttribute="leading" secondItem="x07-28-8PP" secondAttribute="leading" id="Kps-Hu-q1E"/>
                                             <constraint firstAttribute="trailing" secondItem="fmo-Fw-GtJ" secondAttribute="trailing" constant="10" id="KxZ-uE-JRa"/>
                                             <constraint firstItem="7GK-N8-JwB" firstAttribute="centerX" secondItem="k9L-wM-qVN" secondAttribute="centerX" id="LFQ-dh-Qf4"/>
                                             <constraint firstAttribute="trailing" secondItem="7GK-N8-JwB" secondAttribute="trailing" constant="8" id="RNx-YO-kcZ"/>
                                             <constraint firstItem="X9S-h9-SSt" firstAttribute="bottom" secondItem="fBN-mH-DJF" secondAttribute="bottom" id="UlX-hj-Rgd"/>
+                                            <constraint firstItem="o2e-GA-o5D" firstAttribute="top" secondItem="x07-28-8PP" secondAttribute="top" id="aV0-uA-MZH"/>
                                             <constraint firstItem="X9S-h9-SSt" firstAttribute="top" secondItem="fBN-mH-DJF" secondAttribute="top" id="cQT-Vd-5yo"/>
                                             <constraint firstItem="X9S-h9-SSt" firstAttribute="leading" secondItem="fBN-mH-DJF" secondAttribute="leading" id="jeS-JW-uoI"/>
                                             <constraint firstItem="X9S-h9-SSt" firstAttribute="trailing" secondItem="fBN-mH-DJF" secondAttribute="trailing" id="sJt-ge-irS"/>
-                                            <constraint firstItem="o2e-GA-o5D" firstAttribute="top" secondItem="x07-28-8PP" secondAttribute="top" id="v60-Cz-mXQ"/>
+                                            <constraint firstItem="o2e-GA-o5D" firstAttribute="leading" secondItem="x07-28-8PP" secondAttribute="leading" id="xGb-an-Lfi"/>
                                             <constraint firstItem="7GK-N8-JwB" firstAttribute="leading" secondItem="k9L-wM-qVN" secondAttribute="leading" constant="8" id="z2Z-JH-IgD"/>
+                                            <constraint firstItem="o2e-GA-o5D" firstAttribute="trailing" secondItem="x07-28-8PP" secondAttribute="trailing" id="zT6-dT-iRQ"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

@@ -17,6 +17,7 @@ class SearchViewController: UITableViewController {
     }
     
     var searchResult: SearchResult?
+    var placeholder: String = ""
     var pois: [Poi] = []
     
     override func viewDidLoad() {
@@ -42,9 +43,8 @@ class SearchViewController: UITableViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.navigationBar.backgroundColor = .white
         // search bar
-        // 버튼 종류에 따라 출발지/도착지 구분 필요
         let searchBar = UISearchBar()
-        searchBar.placeholder = "출발지 입력"
+        searchBar.placeholder = self.placeholder
         searchBar.setImage(UIImage(), for: UISearchBar.Icon.search, state: .normal)
         searchBar.searchTextField.backgroundColor = .clear
         searchBar.becomeFirstResponder()

@@ -35,6 +35,8 @@ class MainViewController: UIViewController {
         setMapSetting()
         buttonSetting()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        startButton.bringSubviewToFront(self.view)
+        arrivalButton.bringSubviewToFront(self.view)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,12 +47,15 @@ class MainViewController: UIViewController {
     // MARK: - Action Methods
     @IBAction func StartTabButton(_ sender: Any) {
         print("다음 버튼 클릭")
-        guard let svc = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") else { return }
+        guard let svc = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as? SearchViewController else { return }
+        svc.placeholder = "출발지 입력"
         self.navigationController?.pushViewController(svc, animated: true)
     }
     
     @IBAction func ArrivalTabButton(_ sender: Any) {
-        guard let svc = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") else { return }
+        print("도착 버튼 클릭")
+        guard let svc = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as? SearchViewController else { return }
+        svc.placeholder = "도착지 입력"
         self.navigationController?.pushViewController(svc, animated: true)
     }
     
