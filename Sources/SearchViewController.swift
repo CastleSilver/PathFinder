@@ -27,6 +27,7 @@ class SearchViewController: UITableViewController {
         initUI()
     }
     
+    
     func initUI() {
         self.tableView.delegate = self
         self.tableView.dataSource = self

@@ -35,6 +35,10 @@ class MainViewController: UIViewController {
         setMapSetting()
         buttonSetting()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
