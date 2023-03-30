@@ -74,30 +74,32 @@ class SearchViewController: UITableViewController {
         AF.request("https://apis.openapi.sk.com/tmap/pois", method: .get, parameters: parameters).responseJSON { (response) in
             switch response.result {
             case .success(let data):
-                print("호출 성공")
-                do {
-                    print("호출 성공")
-                    let searchPoiInfo = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
-                    let json = try JSONDecoder().decode(SearchResult.self, from: searchPoiInfo)
-                    self.searchResult = json
-                    DispatchQueue.main.async { [self] in
-                        self.tableView.reloadData()
-//                        self.warningVIew.isHidden = !json.
+                if JSONSerialization.isValidJSONObject(data) {
+                    do {
+                        print("호출 성공")
+                        let searchPoiInfo = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
+                        let json = try JSONDecoder().decode(SearchResult.self, from: searchPoiInfo)
+                        self.searchResult = json
+                        DispatchQueue.main.async { [self] in
+                            self.tableView.reloadData()
+//                            self.warningVIew.isHidden = !json.isEmp
+                        }
+                    } catch let DecodingError.dataCorrupted(context) {
+                        print(context)
+                    } catch let DecodingError.keyNotFound(key, context) {
+                        print("Key '\(key)' not found:", context.debugDescription)
+                        print("codingPath:", context.codingPath)
+                    } catch let DecodingError.valueNotFound(value, context) {
+                        print("Value '\(value)' not found:", context.debugDescription)
+                        print("codingPath:", context.codingPath)
+                    } catch let DecodingError.typeMismatch(type, context)  {
+                        print("Type '\(type)' mismatch:", context.debugDescription)
+                        print("codingPath:", context.codingPath)
+                    } catch {
+                        print("error: ", error)
                     }
-                } catch let DecodingError.dataCorrupted(context) {
-                    print(context)
-                } catch let DecodingError.keyNotFound(key, context) {
-                    print("Key '\(key)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch let DecodingError.valueNotFound(value, context) {
-                    print("Value '\(value)' not found:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch let DecodingError.typeMismatch(type, context)  {
-                    print("Type '\(type)' mismatch:", context.debugDescription)
-                    print("codingPath:", context.codingPath)
-                } catch {
-                    print("error: ", error)
                 }
+                
             case .failure(let error):
                 print("Error searching for location: \(error.localizedDescription)")
             }
