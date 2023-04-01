@@ -47,18 +47,16 @@ class MainViewController: UIViewController {
     @IBAction func StartTabButton(_ sender: Any) {
         print("다음 버튼 클릭")
         guard let svc = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as? SearchViewController else { return }
-        svc.placeholder = "출발지 입력"
+        svc.flag = "출발지"
         svc.centerLat = Float(locationManager.location?.coordinate.latitude ?? 37.5)
         svc.centerLon = Float(locationManager.location?.coordinate.longitude ?? 127)
-        print("경도 :\(svc.centerLat)")
-        print(svc.centerLon)
         self.navigationController?.pushViewController(svc, animated: true)
     }
     
     @IBAction func ArrivalTabButton(_ sender: Any) {
         print("도착 버튼 클릭")
         guard let svc = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as? SearchViewController else { return }
-        svc.placeholder = "도착지 입력"
+        svc.flag = "도착지"
         svc.centerLat = Float(locationManager.location?.coordinate.latitude ?? 37.5)
         svc.centerLon = Float(locationManager.location?.coordinate.longitude ?? 127)
         self.navigationController?.pushViewController(svc, animated: true)
@@ -184,7 +182,6 @@ extension MainViewController: NMFMapViewDelegate {
     }
     
     private func setMapSetting() {
-        print("맵 설정")
         mapView.mapType = .basic
         /// 건물그룹, 대중교통그룹 활성화
         mapView.setLayerGroup(NMF_LAYER_GROUP_BUILDING, isEnabled: true)

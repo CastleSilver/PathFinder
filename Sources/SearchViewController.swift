@@ -12,6 +12,8 @@ import CoreLocation
 class SearchViewController: UITableViewController {
     @IBOutlet weak var warningVIew: UIView!
     @IBOutlet weak var borderView: UIView!
+    @IBOutlet weak var mapButton: UIButton!
+    
     var searchBar: UISearchBar? {
         didSet {
             searchBar?.delegate = self
@@ -19,7 +21,7 @@ class SearchViewController: UITableViewController {
     }
     
     var searchResult: SearchResult?
-    var placeholder: String = ""
+    var flag: String = ""
     var centerLon: Float = 0
     var centerLat: Float = 0
     var pois: [Poi] = []
@@ -29,8 +31,8 @@ class SearchViewController: UITableViewController {
         self.view.sendSubviewToBack(self.tableView)
         navigationBarSetting()
         searchBarUISetting()
-//        borderViewSetting()
         initUI()
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -38,11 +40,11 @@ class SearchViewController: UITableViewController {
         searchBar?.resignFirstResponder()
     }
     
-    func borderViewSetting() {
-        borderView.layer.shadowColor = UIColor.gray.cgColor
-        borderView.layer.masksToBounds = false
-        borderView.layer.shadowRadius = 5 // 반경
-        borderView.layer.shadowOpacity = 0.3 // alpha값
+    @IBAction func mapButtonTapped(_ sender: Any) {
+        print("지도에서 선택 버튼 클릭")
+        guard let svc = self.storyboard?.instantiateViewController(withIdentifier: "MapViewController") as? MapViewController else { return }
+        svc.flag = self.flag
+        self.navigationController?.pushViewController(svc, animated: true)
     }
     
     func initUI() {
@@ -60,7 +62,7 @@ class SearchViewController: UITableViewController {
         navigationController?.navigationBar.backgroundColor = .white
         // search bar
         let searchBar = UISearchBar()
-        searchBar.placeholder = self.placeholder
+        searchBar.placeholder = "\(self.flag) 입력"
         searchBar.setImage(UIImage(), for: UISearchBar.Icon.search, state: .normal)
         searchBar.searchTextField.backgroundColor = .clear
         searchBar.becomeFirstResponder()
