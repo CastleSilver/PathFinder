@@ -306,39 +306,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <stackView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" id="1d4-Fr-nsd">
+                        <stackView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" axis="vertical" id="1d4-Fr-nsd">
                             <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="pII-yV-MfL">
-                                    <rect key="frame" x="0.0" y="8.6666666666666661" width="196.66666666666666" height="26.666666666666671"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="3Ee-Ge-wpP">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.333333333333336"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_mylocation" translatesAutoresizingMaskIntoConstraints="NO" id="Bjx-Xc-rgW">
-                                            <rect key="frame" x="0.0" y="0.0" width="65.666666666666671" height="26.666666666666668"/>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내 위치" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BuD-LJ-WEg">
-                                            <rect key="frame" x="75.666666666666686" y="4.3333333333333339" width="121" height="18"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QIu-lt-bCA">
+                                            <rect key="frame" x="0.0" y="0.0" width="196.66666666666666" height="43.333333333333336"/>
+                                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="13" maxY="0.0"/>
+                                            <state key="normal" title="내 위치" image="ic_mylocation">
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2zQ-AC-n5c">
+                                            <rect key="frame" x="196.66666666666663" y="0.0" width="196.33333333333337" height="43.333333333333336"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="13" maxY="0.0"/>
+                                            <state key="normal" title="지도에서 선택" image="ic_map">
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                        </button>
                                     </subviews>
                                 </stackView>
-                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="mKu-CW-Qsu">
-                                    <rect key="frame" x="196.66666666666663" y="8.6666666666666661" width="196.33333333333337" height="26.666666666666671"/>
-                                    <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_map" translatesAutoresizingMaskIntoConstraints="NO" id="AI8-Pe-bzc">
-                                            <rect key="frame" x="0.0" y="0.0" width="44" height="26.666666666666668"/>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="지도에서 선택" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KpJ-dP-VMC">
-                                            <rect key="frame" x="54" y="4.3333333333333339" width="142.33333333333334" height="18"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </stackView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YXp-xW-dFB" userLabel="Border View">
+                                    <rect key="frame" x="0.0" y="43.333333333333336" width="393" height="0.6666666666666643"/>
+                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="0.69999999999999996" id="XgD-F7-KHI"/>
+                                    </constraints>
+                                </view>
                             </subviews>
+                            <viewLayoutGuide key="safeArea" id="sLu-a9-0Lo"/>
+                            <constraints>
+                                <constraint firstItem="YXp-xW-dFB" firstAttribute="leading" secondItem="sLu-a9-0Lo" secondAttribute="leading" id="VeE-E0-xdg"/>
+                                <constraint firstItem="sLu-a9-0Lo" firstAttribute="trailing" secondItem="YXp-xW-dFB" secondAttribute="trailing" id="pgb-Lm-awc"/>
+                            </constraints>
                         </stackView>
                         <view key="tableFooterView" contentMode="scaleToFill" id="vSy-e0-MmG">
                             <rect key="frame" x="0.0" y="165.66666793823242" width="393" height="760"/>
@@ -384,6 +389,7 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="borderView" destination="YXp-xW-dFB" id="Trt-oZ-1oH"/>
                         <outlet property="warningVIew" destination="vSy-e0-MmG" id="WC3-Ch-ZPH"/>
                     </connections>
                 </tableViewController>

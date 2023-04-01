@@ -28,6 +28,7 @@ class MainViewController: UIViewController {
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        //deprecated된 거 사용 지양
         mapView.delegate = self
         locationManager.delegate = self
         checkLocationAuthorization()
@@ -35,12 +36,10 @@ class MainViewController: UIViewController {
         setMapSetting()
         buttonSetting()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        startButton.bringSubviewToFront(self.view)
-        arrivalButton.bringSubviewToFront(self.view)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
@@ -49,6 +48,10 @@ class MainViewController: UIViewController {
         print("다음 버튼 클릭")
         guard let svc = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as? SearchViewController else { return }
         svc.placeholder = "출발지 입력"
+        svc.centerLat = Float(locationManager.location?.coordinate.latitude ?? 37.5)
+        svc.centerLon = Float(locationManager.location?.coordinate.longitude ?? 127)
+        print("경도 :\(svc.centerLat)")
+        print(svc.centerLon)
         self.navigationController?.pushViewController(svc, animated: true)
     }
     
@@ -56,6 +59,8 @@ class MainViewController: UIViewController {
         print("도착 버튼 클릭")
         guard let svc = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as? SearchViewController else { return }
         svc.placeholder = "도착지 입력"
+        svc.centerLat = Float(locationManager.location?.coordinate.latitude ?? 37.5)
+        svc.centerLon = Float(locationManager.location?.coordinate.longitude ?? 127)
         self.navigationController?.pushViewController(svc, animated: true)
     }
     
@@ -78,13 +83,11 @@ class MainViewController: UIViewController {
             self.mylocationMarker?.mapView = mapView
         }
     }
-    
-    
 }
 
 extension MainViewController: CLLocationManagerDelegate {
-    
     // 위치 업데이트 이벤트가 발생할 때 호출되는 델리게이트 메서드
+    // locationmanager는 클래스로 따로 빼는게 더 좋다
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let currentLocation = locations.last else { return }
         locationManager.stopUpdatingLocation()
@@ -105,6 +108,18 @@ extension MainViewController: CLLocationManagerDelegate {
         locationButton.isEnabled = true
     }
     
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        //always인지 한 번 허용인지에 따라 다르게 처리하기
+        switch CLLocationManager.authorizationStatus() {
+        case .authorizedAlways:
+            locationManager.startUpdatingLocation()
+        case .authorizedWhenInUse:
+            locationManager.startUpdatingLocation()
+        default:
+            break
+        }
+    }
+    
     func checkLocationAuthorization() {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse:
@@ -122,7 +137,6 @@ extension MainViewController: CLLocationManagerDelegate {
         case .notDetermined:
             print("위치 권한 묻기")
             locationManager.requestWhenInUseAuthorization()
-            locationManager.startUpdatingLocation()
         default:
             break
         }

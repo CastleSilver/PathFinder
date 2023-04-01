@@ -7,9 +7,11 @@
 
 import UIKit
 import Alamofire
+import CoreLocation
 
 class SearchViewController: UITableViewController {
     @IBOutlet weak var warningVIew: UIView!
+    @IBOutlet weak var borderView: UIView!
     var searchBar: UISearchBar? {
         didSet {
             searchBar?.delegate = self
@@ -18,6 +20,8 @@ class SearchViewController: UITableViewController {
     
     var searchResult: SearchResult?
     var placeholder: String = ""
+    var centerLon: Float = 0
+    var centerLat: Float = 0
     var pois: [Poi] = []
     
     override func viewDidLoad() {
@@ -25,9 +29,21 @@ class SearchViewController: UITableViewController {
         self.view.sendSubviewToBack(self.tableView)
         navigationBarSetting()
         searchBarUISetting()
+//        borderViewSetting()
         initUI()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        searchBar?.resignFirstResponder()
+    }
+    
+    func borderViewSetting() {
+        borderView.layer.shadowColor = UIColor.gray.cgColor
+        borderView.layer.masksToBounds = false
+        borderView.layer.shadowRadius = 5 // 반경
+        borderView.layer.shadowOpacity = 0.3 // alpha값
+    }
     
     func initUI() {
         self.tableView.delegate = self
@@ -56,33 +72,29 @@ class SearchViewController: UITableViewController {
         searchBar?.setImage(UIImage(), for: UISearchBar.Icon.search, state: .normal)
     }
     
-    private func searchFor(query: String) {
+    func searchFor(query: String) {
         let parameters: [String: Any] = [
-            "version": "1",
+            "version": 1,
             "searchKeyword": query,
-            "areaLLCode": "11",
-            "areaLMCode": "000",
-            "resCoordType": "KATECH",
-            "searchType": "name",
             "searchtypCd": "A",
             "radius": "0",
-            "reqCoordType": "KATECH",
-            "multiPoint": "Y",
+            "centerLon": self.centerLon,
+            "centerLat": self.centerLat,
             "appKey": "jztJUPbn8ba0rJkDt8YPZ3BNreZjkzkR34COlvQD"
         ]
-        
         
         AF.request("https://apis.openapi.sk.com/tmap/pois", method: .get, parameters: parameters).responseJSON { (response) in
             switch response.result {
             case .success(let data):
+                print("호출 성공")
                 if JSONSerialization.isValidJSONObject(data) {
                     do {
-                        print("호출 성공")
                         let searchPoiInfo = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
                         let json = try JSONDecoder().decode(SearchResult.self, from: searchPoiInfo)
                         self.searchResult = json
-                        DispatchQueue.main.async { [self] in
-                            self.tableView.reloadData()
+            
+                        DispatchQueue.main.async { [weak self] in
+                            self?.tableView.reloadData()
 //                            self.warningVIew.isHidden = !json.isEmp
                         }
                     } catch let DecodingError.dataCorrupted(context) {
@@ -120,6 +132,14 @@ extension SearchViewController {
         let searchResult = searchResult?.searchPoiInfo.pois.poi[indexPath.row]
         cell.nameLabel.text = searchResult?.name
         cell.addressLabel.text = searchResult?.newAddressList.newAddress[0].fullAddressRoad
+        var distance = Double(searchResult?.radius ?? "") ?? 0.0
+        distance = distance * 1000
+        if distance < 1000 {
+            cell.distLabel.text = "\(distance) m"
+        } else {
+            cell.distLabel.text = "\(distance/1000) km"
+        }
+        
         
         return cell
     }
@@ -134,7 +154,6 @@ extension SearchViewController {
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("키보드 변화")
         searchFor(query: searchText)
     }
     
