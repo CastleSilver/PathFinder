@@ -8,4 +8,5 @@ target 'PathFinder' do
   # Pods for PathFinder
     pod 'NMapsMap'
     pod 'lottie-ios'
+    pod 'Alamofire', '~> 5.5'
 end
