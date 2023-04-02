@@ -149,6 +149,16 @@ extension SearchViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 55
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let svc = self.storyboard?.instantiateViewController(withIdentifier: "MapViewController") as? MapViewController else { return }
+        let searchResult = searchResult?.searchPoiInfo.pois.poi[indexPath.row]
+        svc.centerLon = Double(searchResult?.noorLon ?? "")
+        svc.centerLat = Double(searchResult?.noorLat ?? "")
+        svc.flag = self.flag
+        self.navigationController?.pushViewController(svc, animated: true)
+    }
 }
 
 // MARK: - UISearchBarDelegate

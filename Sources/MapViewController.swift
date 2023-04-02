@@ -21,6 +21,8 @@ class MapViewController: UIViewController {
     let locationManager = CLLocationManager()
     var mylocationMarker: NMFMarker?
     var customMarker: NMFMarker?
+    var centerLon: Double?
+    var centerLat: Double?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +36,10 @@ class MapViewController: UIViewController {
         if flag == "도착지" {
             locationButton.tintColor = UIColor(red: 250/255, green: 106/255, blue: 70/255, alpha: 1)
         }
+    }
+    
+    @IBAction func setButtonTapped(_ sender: Any) {
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     @IBAction func locationButtonTapped(_ sender: Any) {
@@ -95,7 +101,7 @@ extension MapViewController: CLLocationManagerDelegate {
             self.mylocationMarker = marker
         }
         
-        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: currentLocation.coordinate.latitude, lng: currentLocation.coordinate.longitude))
+        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: centerLat ?? currentLocation.coordinate.latitude, lng: centerLon ?? currentLocation.coordinate.longitude))
         mapView.moveCamera(cameraUpdate)
         
         locationButton.isEnabled = true

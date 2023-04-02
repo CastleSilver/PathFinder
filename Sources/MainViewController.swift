@@ -71,6 +71,7 @@ class MainViewController: UIViewController {
     // MARK: - Methods
     private func buttonSetting() {
         self.nextButton.layer.cornerRadius = 5
+        locationButton.tintColor = UIColor(red: 82/255, green: 190/255, blue: 214/255, alpha: 1)
     }
     
     func setMyLocationMarker() {
