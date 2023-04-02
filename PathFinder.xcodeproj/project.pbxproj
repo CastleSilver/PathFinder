@@ -23,9 +23,9 @@
 		5CD268C529D3D9CB009063FE /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CD268C429D3D9CB009063FE /* SearchResultCell.xib */; };
 		5CD268C729D42383009063FE /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD268C629D42383009063FE /* SearchResultCell.swift */; };
 		5CD268CD29D45D48009063FE /* TMapAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD268CC29D45D48009063FE /* TMapAPITests.swift */; };
+		5CD268EF29D83020009063FE /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD268EE29D83020009063FE /* MapViewController.swift */; };
 		5CD3551D29C1514400419724 /* ViewSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD3551C29C1514400419724 /* ViewSetting.swift */; };
 		5CEA287A29D26EF0001C7ACF /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEA287929D26EF0001C7ACF /* SearchResult.swift */; };
-		5CEA287C29D2796C001C7ACF /* TMapAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEA287B29D2796C001C7ACF /* TMapAPI.swift */; };
 		5CEA287F29D27B51001C7ACF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 5CEA287E29D27B51001C7ACF /* Alamofire */; };
 		5CEA288D29D33AA0001C7ACF /* PathFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEA288C29D33AA0001C7ACF /* PathFinderTests.swift */; };
 /* End PBXBuildFile section */
@@ -74,9 +74,9 @@
 		5CD268C429D3D9CB009063FE /* SearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		5CD268C629D42383009063FE /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		5CD268CC29D45D48009063FE /* TMapAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMapAPITests.swift; sourceTree = SOURCE_ROOT; };
+		5CD268EE29D83020009063FE /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		5CD3551C29C1514400419724 /* ViewSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSetting.swift; sourceTree = "<group>"; };
 		5CEA287929D26EF0001C7ACF /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
-		5CEA287B29D2796C001C7ACF /* TMapAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMapAPI.swift; sourceTree = "<group>"; };
 		5CEA288A29D33AA0001C7ACF /* PathFinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PathFinderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CEA288C29D33AA0001C7ACF /* PathFinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathFinderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,9 +140,9 @@
 				5CD3551C29C1514400419724 /* ViewSetting.swift */,
 				5C64364029C434260008C56F /* SearchViewController.swift */,
 				5CEA287929D26EF0001C7ACF /* SearchResult.swift */,
-				5CEA287B29D2796C001C7ACF /* TMapAPI.swift */,
 				5CD268C429D3D9CB009063FE /* SearchResultCell.xib */,
 				5CD268C629D42383009063FE /* SearchResultCell.swift */,
+				5CD268EE29D83020009063FE /* MapViewController.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -345,7 +345,7 @@
 				5C4F3C9029B8521E00A219AF /* SplashViewController.swift in Sources */,
 				5C64364129C434260008C56F /* SearchViewController.swift in Sources */,
 				5C4F3C8C29B8521E00A219AF /* AppDelegate.swift in Sources */,
-				5CEA287C29D2796C001C7ACF /* TMapAPI.swift in Sources */,
+				5CD268EF29D83020009063FE /* MapViewController.swift in Sources */,
 				5CEA287A29D26EF0001C7ACF /* SearchResult.swift in Sources */,
 				5CD3551D29C1514400419724 /* ViewSetting.swift in Sources */,
 				5C4F3C8E29B8521E00A219AF /* SceneDelegate.swift in Sources */,

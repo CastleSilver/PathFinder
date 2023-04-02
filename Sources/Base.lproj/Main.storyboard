@@ -328,6 +328,9 @@
                                             <state key="normal" title="지도에서 선택" image="ic_map">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
+                                            <connections>
+                                                <action selector="mapButtonTapped:" destination="EJP-We-e0u" eventType="touchUpInside" id="V6w-Kh-cpm"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </stackView>
@@ -390,12 +393,117 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="borderView" destination="YXp-xW-dFB" id="Trt-oZ-1oH"/>
+                        <outlet property="mapButton" destination="2zQ-AC-n5c" id="WGH-mD-tf9"/>
                         <outlet property="warningVIew" destination="vSy-e0-MmG" id="WC3-Ch-ZPH"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="91F-3R-RXM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1907.6335877862596" y="-18.30985915492958"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="Hkm-a2-0Gs">
+            <objects>
+                <viewController storyboardIdentifier="MapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lGU-fQ-cDQ" customClass="MapViewController" customModule="PathFinder" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="K32-H3-6dc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gtm-e4-Huq" customClass="NMFMapView">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WKI-Th-SRi">
+                                <rect key="frame" x="335" y="643" width="40" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="02J-Hc-UsJ"/>
+                                    <constraint firstAttribute="height" constant="40" id="Tq0-GR-0OB"/>
+                                    <constraint firstAttribute="width" constant="40" id="h6R-hV-bqE"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="lJg-1m-HXt"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="location"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" systemColor="systemGray4Color"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="LocationButtonTapped:" destination="GsN-de-6ar" eventType="touchUpInside" id="9bp-JH-bnE"/>
+                                    <action selector="locationButtonTapped:" destination="lGU-fQ-cDQ" eventType="touchUpInside" id="iaE-8T-uFL"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bhs-Uv-zal">
+                                <rect key="frame" x="0.0" y="698" width="393" height="120"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftK-tw-pf0">
+                                        <rect key="frame" x="15" y="12" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nsb-rX-adR">
+                                        <rect key="frame" x="271" y="75" width="107" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="107" id="B0n-sz-YEX"/>
+                                            <constraint firstAttribute="height" constant="30" id="Z7B-7Q-eJR"/>
+                                        </constraints>
+                                        <inset key="titleEdgeInsets" minX="4" minY="6" maxX="4" maxY="6"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Button"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="setButtonTapped:" destination="lGU-fQ-cDQ" eventType="touchUpInside" id="RWB-st-CZr"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Nsb-rX-adR" secondAttribute="trailing" constant="15" id="7R7-2h-u8N"/>
+                                    <constraint firstAttribute="height" constant="120" id="Iqn-YC-pMr"/>
+                                    <constraint firstItem="ftK-tw-pf0" firstAttribute="top" secondItem="bhs-Uv-zal" secondAttribute="top" constant="12" id="oBG-dj-nsv"/>
+                                    <constraint firstItem="ftK-tw-pf0" firstAttribute="leading" secondItem="bhs-Uv-zal" secondAttribute="leading" constant="15" id="tRx-DA-Et2"/>
+                                    <constraint firstAttribute="bottom" secondItem="Nsb-rX-adR" secondAttribute="bottom" constant="15" id="x4t-QX-HQs"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="iN6-mA-x3Z"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="bhs-Uv-zal" firstAttribute="trailing" secondItem="iN6-mA-x3Z" secondAttribute="trailing" id="0vX-4H-bOE"/>
+                            <constraint firstItem="bhs-Uv-zal" firstAttribute="leading" secondItem="iN6-mA-x3Z" secondAttribute="leading" id="6Ic-ll-PEu"/>
+                            <constraint firstItem="iN6-mA-x3Z" firstAttribute="bottom" secondItem="bhs-Uv-zal" secondAttribute="bottom" id="880-LI-wEl"/>
+                            <constraint firstItem="bhs-Uv-zal" firstAttribute="top" secondItem="WKI-Th-SRi" secondAttribute="bottom" constant="15" id="8gb-e0-KNK"/>
+                            <constraint firstItem="bhs-Uv-zal" firstAttribute="centerX" secondItem="gtm-e4-Huq" secondAttribute="centerX" id="GX6-PX-td4"/>
+                            <constraint firstItem="gtm-e4-Huq" firstAttribute="leading" secondItem="iN6-mA-x3Z" secondAttribute="leading" id="LWc-Vk-bEz"/>
+                            <constraint firstItem="iN6-mA-x3Z" firstAttribute="trailing" secondItem="WKI-Th-SRi" secondAttribute="trailing" constant="18" id="LbN-rh-6Bf"/>
+                            <constraint firstItem="iN6-mA-x3Z" firstAttribute="bottom" secondItem="gtm-e4-Huq" secondAttribute="bottom" id="ViX-uF-Jaf"/>
+                            <constraint firstItem="iN6-mA-x3Z" firstAttribute="trailing" secondItem="gtm-e4-Huq" secondAttribute="trailing" id="fu5-yp-aVK"/>
+                            <constraint firstItem="gtm-e4-Huq" firstAttribute="top" secondItem="iN6-mA-x3Z" secondAttribute="top" id="iP8-jS-94w"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="addressLabel" destination="ftK-tw-pf0" id="qbW-5s-e5n"/>
+                        <outlet property="locationButton" destination="WKI-Th-SRi" id="0S0-rk-79m"/>
+                        <outlet property="mapView" destination="gtm-e4-Huq" id="0Li-5N-ctR"/>
+                        <outlet property="setButton" destination="Nsb-rX-adR" id="aL9-na-cUV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ViB-Ga-0pp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2917" y="-18"/>
         </scene>
     </scenes>
     <resources>
