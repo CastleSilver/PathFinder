@@ -214,9 +214,9 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D7i-Jr-8Jj">
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D7i-Jr-8Jj">
                                         <rect key="frame" x="15" y="138" width="363" height="55"/>
-                                        <color key="backgroundColor" systemColor="systemGray3Color"/>
+                                        <color key="backgroundColor" systemColor="systemGray2Color"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="Q74-fe-6Fv"/>
                                         </constraints>
@@ -224,6 +224,9 @@
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="다음"/>
+                                        <connections>
+                                            <action selector="nextButtonTapped:" destination="GsN-de-6ar" eventType="touchUpInside" id="WM0-OG-6He"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -289,7 +292,7 @@
                         <outlet property="arrivalLabel" destination="dto-xl-lLJ" id="sti-ME-6Tb"/>
                         <outlet property="locationButton" destination="f5V-dq-OVx" id="aAg-vW-CtQ"/>
                         <outlet property="mapView" destination="ayF-FZ-T4A" id="Iyu-nZ-99Q"/>
-                        <outlet property="nextButton" destination="D7i-Jr-8Jj" id="IwH-Nz-e6p"/>
+                        <outlet property="nextButton" destination="D7i-Jr-8Jj" id="CZR-I8-R0s"/>
                         <outlet property="startButton" destination="X9S-h9-SSt" id="EfM-rn-AOi"/>
                         <outlet property="startLabel" destination="OFG-o3-EIN" id="A2Z-8x-kjq"/>
                     </connections>
@@ -320,6 +323,9 @@
                                             <state key="normal" title="내 위치" image="ic_mylocation">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
+                                            <connections>
+                                                <action selector="myLocationButtonTapped:" destination="EJP-We-e0u" eventType="touchUpInside" id="gAQ-Ya-jxn"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2zQ-AC-n5c">
                                             <rect key="frame" x="196.66666666666663" y="0.0" width="196.33333333333337" height="43.333333333333336"/>
@@ -505,17 +511,129 @@
             </objects>
             <point key="canvasLocation" x="2917" y="-18"/>
         </scene>
+        <!--Result View Controller-->
+        <scene sceneID="CE5-hw-iZn">
+            <objects>
+                <viewController storyboardIdentifier="ResultViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Yvp-iZ-GaV" customClass="ResultViewController" customModule="PathFinder" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XIa-XF-OQ8">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lhS-XK-QcM" customClass="LottieAnimationView" customModule="Lottie">
+                                <rect key="frame" x="60" y="447" width="273" height="350"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="350" id="AkE-Bf-F1f"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="location-pin"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="도착지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJS-kP-sSa">
+                                <rect key="frame" x="275" y="341" width="78" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
+                                <color key="textColor" red="0.98039215690000003" green="0.41568627450000001" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="경로 설정이 완료되었습니다!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oPo-df-416">
+                                <rect key="frame" x="39.999999999999986" y="115" width="197.66666666666663" height="76"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="31"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <size key="shadowOffset" width="0.0" height="2"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="출발지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RoA-LJ-yyX">
+                                <rect key="frame" x="40" y="205" width="78" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
+                                <color key="textColor" red="0.32156862749999998" green="0.74509803919999995" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gla-67-7gV">
+                                <rect key="frame" x="40" y="251" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axe-mf-k07">
+                                <rect key="frame" x="16" y="51" width="40" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="dDg-nx-rgd"/>
+                                    <constraint firstAttribute="width" constant="40" id="twj-Iw-S31"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="ic_prev"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" systemColor="systemGray4Color"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="LocationButtonTapped:" destination="GsN-de-6ar" eventType="touchUpInside" id="3tI-c1-vgy"/>
+                                    <action selector="backButtonTapped:" destination="Yvp-iZ-GaV" eventType="touchUpInside" id="SA9-di-j4w"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1oc-q8-EJV">
+                                <rect key="frame" x="353" y="387" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="N9Q-HF-wfW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="N9Q-HF-wfW" firstAttribute="trailing" secondItem="1oc-q8-EJV" secondAttribute="trailing" constant="40" id="1I4-8b-UPn"/>
+                            <constraint firstItem="lhS-XK-QcM" firstAttribute="top" secondItem="tJS-kP-sSa" secondAttribute="bottom" constant="70" id="1oO-uT-ik6"/>
+                            <constraint firstItem="oPo-df-416" firstAttribute="top" secondItem="axe-mf-k07" secondAttribute="bottom" constant="24" id="2bc-G0-5ZO"/>
+                            <constraint firstItem="oPo-df-416" firstAttribute="leading" secondItem="N9Q-HF-wfW" secondAttribute="leading" constant="40" id="JuK-op-rzW"/>
+                            <constraint firstItem="RoA-LJ-yyX" firstAttribute="top" secondItem="oPo-df-416" secondAttribute="bottom" constant="14" id="Ob9-5g-hmI"/>
+                            <constraint firstItem="gla-67-7gV" firstAttribute="top" secondItem="RoA-LJ-yyX" secondAttribute="bottom" constant="10" id="TOi-3z-ZZC"/>
+                            <constraint firstItem="gla-67-7gV" firstAttribute="leading" secondItem="N9Q-HF-wfW" secondAttribute="leading" constant="40" id="Ytt-Qd-Mnl"/>
+                            <constraint firstItem="N9Q-HF-wfW" firstAttribute="trailing" secondItem="tJS-kP-sSa" secondAttribute="trailing" constant="40" id="bRk-eC-bXk"/>
+                            <constraint firstItem="RoA-LJ-yyX" firstAttribute="leading" secondItem="N9Q-HF-wfW" secondAttribute="leading" constant="40" id="gTL-QW-zXe"/>
+                            <constraint firstItem="1oc-q8-EJV" firstAttribute="top" secondItem="tJS-kP-sSa" secondAttribute="bottom" constant="10" id="iqH-MX-ItN"/>
+                            <constraint firstItem="axe-mf-k07" firstAttribute="top" secondItem="XIa-XF-OQ8" secondAttribute="top" constant="51" id="qfd-oy-JNm"/>
+                            <constraint firstItem="lhS-XK-QcM" firstAttribute="leading" secondItem="N9Q-HF-wfW" secondAttribute="leading" constant="60" id="svK-un-PGQ"/>
+                            <constraint firstItem="axe-mf-k07" firstAttribute="leading" secondItem="N9Q-HF-wfW" secondAttribute="leading" constant="16" id="uc4-pR-jRL"/>
+                            <constraint firstItem="N9Q-HF-wfW" firstAttribute="trailing" secondItem="lhS-XK-QcM" secondAttribute="trailing" constant="60" id="ugN-QJ-PWy"/>
+                            <constraint firstAttribute="bottom" secondItem="lhS-XK-QcM" secondAttribute="bottom" constant="55" id="zqs-Wj-qzf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="osn-wb-44J"/>
+                    <connections>
+                        <outlet property="arrivalAddress" destination="1oc-q8-EJV" id="9Xk-XA-okd"/>
+                        <outlet property="backButton" destination="axe-mf-k07" id="ifH-Xz-s7x"/>
+                        <outlet property="lottieView" destination="lhS-XK-QcM" id="qgt-j6-eeM"/>
+                        <outlet property="startAddress" destination="gla-67-7gV" id="POP-sL-Nzg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J8I-mf-ehF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1907.6335877862596" y="719.71830985915494"/>
+        </scene>
     </scenes>
     <resources>
         <image name="arrival" width="21.333333969116211" height="21.333333969116211"/>
         <image name="depart" width="21.333333969116211" height="21.333333969116211"/>
         <image name="ic_map" width="26.666666030883789" height="26.666666030883789"/>
         <image name="ic_mylocation" width="26.666666030883789" height="26.666666030883789"/>
+        <image name="ic_prev" width="32" height="32"/>
         <image name="ic_warning" width="64" height="64"/>
         <image name="location" width="37.333332061767578" height="37.333332061767578"/>
         <image name="logo" width="856" height="651"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray3Color">
             <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -19,12 +19,14 @@ class SearchViewController: UITableViewController {
             searchBar?.delegate = self
         }
     }
-    
+
+    let locationManager = CLLocationManager()
     var searchResult: SearchResult?
     var flag: String = ""
     var centerLon: Float = 0
     var centerLat: Float = 0
     var pois: [Poi] = []
+    var route = Route.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,11 +35,40 @@ class SearchViewController: UITableViewController {
         searchBarUISetting()
         initUI()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         searchBar?.resignFirstResponder()
+    }
+    
+    @IBAction func myLocationButtonTapped(_ sender: Any) {
+        guard let navi = self.navigationController else { return }
+        let vcArr = navi.viewControllers.filter { $0 is MainViewController }
+        if vcArr.count > 0, let mvc = vcArr[0] as? MainViewController {
+            if let myLocation = locationManager.location?.coordinate {
+                let geocoder = CLGeocoder()
+                geocoder.reverseGeocodeLocation(CLLocation(latitude: myLocation.latitude, longitude: myLocation.longitude)) { placemarks, error in
+                    guard let placemark = placemarks?.first else { return }
+                    switch self.flag {
+                    case "출발지":
+                        mvc.startLabel.text = placemark.name
+                        self.route.startAddress = placemark.name ?? ""
+                        self.route.startLon = myLocation.longitude
+                        self.route.startLat = myLocation.latitude
+                    case "도착지":
+                        mvc.arrivalLabel.text = placemark.name
+                        self.route.arrivalAddress = placemark.name ?? ""
+                        self.route.arrivalLon = myLocation.longitude
+                        self.route.arrivalLat = myLocation.latitude
+                    default:
+                        break
+                    }
+                }
+            }
+        }
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func mapButtonTapped(_ sender: Any) {
@@ -47,6 +78,39 @@ class SearchViewController: UITableViewController {
         self.navigationController?.pushViewController(svc, animated: true)
     }
     
+    
+    // UserDefaults에서 검색어 목록을 불러오는 함수
+    func loadSearchHistory() -> [Poi] {
+        guard let data = UserDefaults.standard.data(forKey: "SearchHistory"),
+              let searchList = try? JSONDecoder().decode([Poi].self, from: data) else {
+            return [Poi]()
+        }
+        return searchList
+    }
+
+    // UserDefaults에 검색어를 저장하는 함수
+    func saveSearchHistory(_ searchKeyword: Poi) {
+        // UserDefaults에서 검색어 목록을 불러옵니다.
+        var searchList = loadSearchHistory()
+
+        // 검색어를 검색어 목록에 추가합니다.
+        searchList.insert(searchKeyword, at: 0)
+        
+        // 최근 10개의 검색어만 저장합니다.
+        if searchList.count > 10 {
+            searchList.removeLast()
+        }
+        
+        // 검색어 목록을 UserDefaults에 저장합니다.
+        guard let data = try? JSONEncoder().encode(searchList) else {
+            return
+        }
+        UserDefaults.standard.set(data, forKey: "SearchHistory")
+        
+        // 테이블 뷰를 업데이트합니다.
+        self.tableView.reloadData()
+    }
+
     func initUI() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -126,22 +190,33 @@ class SearchViewController: UITableViewController {
 extension SearchViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchResult?.searchPoiInfo.pois.poi.count ?? 0
+        if let searchResult = self.searchResult {
+            return searchResult.searchPoiInfo.pois.poi.count ?? 0
+        } else {
+            return loadSearchHistory().count
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as? SearchResultCell else { return UITableViewCell() }
-        let searchResult = searchResult?.searchPoiInfo.pois.poi[indexPath.row]
-        cell.nameLabel.text = searchResult?.name
-        cell.addressLabel.text = searchResult?.newAddressList.newAddress[0].fullAddressRoad
-        var distance = Double(searchResult?.radius ?? "") ?? 0.0
-        distance = distance * 1000
-        if distance < 1000 {
-            cell.distLabel.text = "\(distance) m"
+        if let searchResult = self.searchResult {
+            let poi = searchResult.searchPoiInfo.pois.poi[indexPath.row]
+            cell.nameLabel.text = poi.name
+            cell.addressLabel.text = poi.newAddressList.newAddress[0].fullAddressRoad
+            var distance = Double(poi.radius) ?? 0.0
+            distance = distance * 1000
+            if distance < 1000 {
+                cell.distLabel.text = "\(distance) m"
+            } else {
+                cell.distLabel.text = "\(distance/1000) km"
+            }
         } else {
-            cell.distLabel.text = "\(distance/1000) km"
+            let searchResult = loadSearchHistory()[indexPath.row]
+            print(searchResult.name)
+            cell.nameLabel.text = searchResult.name
+            cell.addressLabel.text = searchResult.newAddressList.newAddress[0].fullAddressRoad
+            cell.distLabel.isHidden = true
         }
-        
         
         return cell
     }
@@ -151,13 +226,22 @@ extension SearchViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("table cell 클릭")
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let svc = self.storyboard?.instantiateViewController(withIdentifier: "MapViewController") as? MapViewController else { return }
-        let searchResult = searchResult?.searchPoiInfo.pois.poi[indexPath.row]
-        svc.centerLon = Double(searchResult?.noorLon ?? "")
-        svc.centerLat = Double(searchResult?.noorLat ?? "")
-        svc.flag = self.flag
-        self.navigationController?.pushViewController(svc, animated: true)
+        guard let mvc = self.storyboard?.instantiateViewController(withIdentifier: "MapViewController") as? MapViewController else { return }
+        if let search = self.searchResult {
+            let searchResult = search.searchPoiInfo.pois.poi[indexPath.row]
+            saveSearchHistory(searchResult)
+            mvc.centerLon = Double(searchResult.noorLon) ?? 0
+            mvc.centerLat = Double(searchResult.noorLat) ?? 0
+            mvc.flag = self.flag
+        } else {
+            let searchResult = loadSearchHistory()[indexPath.row]
+            mvc.centerLon = Double(searchResult.noorLon) ?? 0
+            mvc.centerLat = Double(searchResult.noorLat) ?? 0
+            mvc.flag = self.flag
+        }
+        self.navigationController?.pushViewController(mvc, animated: true)
     }
 }
 
@@ -170,4 +254,3 @@ extension SearchViewController: UISearchBarDelegate {
     }
     
 }
-

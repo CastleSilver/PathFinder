@@ -23,6 +23,7 @@ class MapViewController: UIViewController {
     var customMarker: NMFMarker?
     var centerLon: Double?
     var centerLat: Double?
+    var route = Route.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +40,27 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func setButtonTapped(_ sender: Any) {
-        self.navigationController?.popToRootViewController(animated: true)
+        guard let navi = self.navigationController else { return }
+        let vcArr = navi.viewControllers.filter { $0 is MainViewController }
+        if vcArr.count > 0, let vc = vcArr[0] as? MainViewController {
+            if let dest = self.customMarker?.position {
+                switch flag {
+                case "출발지":
+                    vc.startLabel?.text = addressLabel.text
+                    route.startAddress = addressLabel.text ?? ""
+                    route.startLon = dest.lng
+                    route.startLat = dest.lat
+                case "도착지":
+                    vc.arrivalLabel?.text = addressLabel.text ?? ""
+                    route.arrivalAddress = addressLabel.text ?? ""
+                    route.arrivalLon = dest.lng
+                    route.arrivalLat = dest.lat
+                default:
+                    break
+                }
+            }
+            navi.popToViewController(vc, animated: true)
+        }
     }
     
     @IBAction func locationButtonTapped(_ sender: Any) {
@@ -148,7 +169,7 @@ extension MapViewController: NMFMapViewDelegate {
             }
             
             DispatchQueue.main.async {
-                self.addressLabel.text = placemark.name // 'startLabel'에 주소를 표시
+                self.addressLabel.text = placemark.name // 'addressLabel'에 주소를 표시
             }
         }
     }

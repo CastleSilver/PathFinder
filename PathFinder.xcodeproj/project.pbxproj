@@ -16,6 +16,7 @@
 		5C4F3CA829B99B4900A219AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C4F3CA729B99B4900A219AF /* LaunchScreen.storyboard */; };
 		5C4F3CAA29BAD6FE00A219AF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4F3CA929BAD6FE00A219AF /* MainViewController.swift */; };
 		5C64364129C434260008C56F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C64364029C434260008C56F /* SearchViewController.swift */; };
+		5CAC7D5729DB1B6400279E92 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAC7D5629DB1B6400279E92 /* Route.swift */; };
 		5CD268B929D33BB8009063FE /* Pods_PathFinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CD268B829D33BB8009063FE /* Pods_PathFinder.framework */; };
 		5CD268BB29D33C74009063FE /* ViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD268BA29D33C74009063FE /* ViewTest.swift */; };
 		5CD268BF29D3C568009063FE /* LocationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD268BE29D3C568009063FE /* LocationTest.swift */; };
@@ -24,6 +25,8 @@
 		5CD268C729D42383009063FE /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD268C629D42383009063FE /* SearchResultCell.swift */; };
 		5CD268CD29D45D48009063FE /* TMapAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD268CC29D45D48009063FE /* TMapAPITests.swift */; };
 		5CD268EF29D83020009063FE /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD268EE29D83020009063FE /* MapViewController.swift */; };
+		5CD268F129DA6D17009063FE /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD268F029DA6D17009063FE /* ResultViewController.swift */; };
+		5CD268F329DA6F39009063FE /* location-pin.json in Resources */ = {isa = PBXBuildFile; fileRef = 5CD268F229DA6F39009063FE /* location-pin.json */; };
 		5CD3551D29C1514400419724 /* ViewSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD3551C29C1514400419724 /* ViewSetting.swift */; };
 		5CEA287A29D26EF0001C7ACF /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEA287929D26EF0001C7ACF /* SearchResult.swift */; };
 		5CEA287F29D27B51001C7ACF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 5CEA287E29D27B51001C7ACF /* Alamofire */; };
@@ -67,6 +70,7 @@
 		5C4F3CA729B99B4900A219AF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5C4F3CA929BAD6FE00A219AF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		5C64364029C434260008C56F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		5CAC7D5629DB1B6400279E92 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		5CD268B829D33BB8009063FE /* Pods_PathFinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_PathFinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5CD268BA29D33C74009063FE /* ViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTest.swift; sourceTree = "<group>"; };
 		5CD268BE29D3C568009063FE /* LocationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTest.swift; sourceTree = "<group>"; };
@@ -75,6 +79,8 @@
 		5CD268C629D42383009063FE /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		5CD268CC29D45D48009063FE /* TMapAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMapAPITests.swift; sourceTree = SOURCE_ROOT; };
 		5CD268EE29D83020009063FE /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		5CD268F029DA6D17009063FE /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		5CD268F229DA6F39009063FE /* location-pin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "location-pin.json"; sourceTree = "<group>"; };
 		5CD3551C29C1514400419724 /* ViewSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSetting.swift; sourceTree = "<group>"; };
 		5CEA287929D26EF0001C7ACF /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		5CEA288A29D33AA0001C7ACF /* PathFinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PathFinderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,6 +149,8 @@
 				5CD268C429D3D9CB009063FE /* SearchResultCell.xib */,
 				5CD268C629D42383009063FE /* SearchResultCell.swift */,
 				5CD268EE29D83020009063FE /* MapViewController.swift */,
+				5CD268F029DA6D17009063FE /* ResultViewController.swift */,
+				5CAC7D5629DB1B6400279E92 /* Route.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -150,6 +158,7 @@
 		5C4F3C9F29B8522F00A219AF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5CD268F229DA6F39009063FE /* location-pin.json */,
 				5C4F3CA129B96B2200A219AF /* splash-image.json */,
 			);
 			path = Resources;
@@ -278,6 +287,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CD268F329DA6F39009063FE /* location-pin.json in Resources */,
 				5C4F3CA229B96B2200A219AF /* splash-image.json in Resources */,
 				5CD268C529D3D9CB009063FE /* SearchResultCell.xib in Resources */,
 				5C4F3C9529B8521F00A219AF /* Assets.xcassets in Resources */,
@@ -344,9 +354,11 @@
 			files = (
 				5C4F3C9029B8521E00A219AF /* SplashViewController.swift in Sources */,
 				5C64364129C434260008C56F /* SearchViewController.swift in Sources */,
+				5CAC7D5729DB1B6400279E92 /* Route.swift in Sources */,
 				5C4F3C8C29B8521E00A219AF /* AppDelegate.swift in Sources */,
 				5CD268EF29D83020009063FE /* MapViewController.swift in Sources */,
 				5CEA287A29D26EF0001C7ACF /* SearchResult.swift in Sources */,
+				5CD268F129DA6D17009063FE /* ResultViewController.swift in Sources */,
 				5CD3551D29C1514400419724 /* ViewSetting.swift in Sources */,
 				5C4F3C8E29B8521E00A219AF /* SceneDelegate.swift in Sources */,
 				5CD268C729D42383009063FE /* SearchResultCell.swift in Sources */,

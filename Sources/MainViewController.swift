@@ -24,6 +24,8 @@ class MainViewController: UIViewController {
     let locationManager = CLLocationManager()
     var mylocationMarker: NMFMarker? // 내 위치 마커
     var startMarker: NMFMarker? // 출발 위치 마커
+    var route = Route.shared
+    var flag: String = "출발지"
     
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
@@ -40,12 +42,26 @@ class MainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if arrivalLabel.text != "" {
+            nextButton.backgroundColor = UIColor(red: 82/255, green: 190/255, blue: 214/255, alpha: 1)
+            nextButton.isEnabled = true
+        }
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     // MARK: - Action Methods
-    @IBAction func StartTabButton(_ sender: Any) {
+    @IBAction func nextButtonTapped(_ sender: Any) {
         print("다음 버튼 클릭")
+        guard let rvc = self.storyboard?.instantiateViewController(withIdentifier: "ResultViewController") as? ResultViewController else { return }
+        guard let start = startLabel.text else { return }
+        guard let arrival = arrivalLabel.text else { return }
+        print(start)
+        rvc.start = start
+        rvc.arrival = arrival
+        self.navigationController?.pushViewController(rvc, animated: true)
+    }
+
+    @IBAction func StartTabButton(_ sender: Any) {
         guard let svc = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as? SearchViewController else { return }
         svc.flag = "출발지"
         svc.centerLat = Float(locationManager.location?.coordinate.latitude ?? 37.5)
@@ -70,7 +86,7 @@ class MainViewController: UIViewController {
     
     // MARK: - Methods
     private func buttonSetting() {
-        self.nextButton.layer.cornerRadius = 5
+        nextButton.layer.cornerRadius = 5
         locationButton.tintColor = UIColor(red: 82/255, green: 190/255, blue: 214/255, alpha: 1)
     }
     
@@ -177,7 +193,15 @@ extension MainViewController: NMFMapViewDelegate {
             }
             
             DispatchQueue.main.async {
-                self.startLabel.text = placemark.name // 'startLabel'에 주소를 표시
+                if let name = placemark.name {
+                    self.startLabel.text = name // 'startLabel'에 주소를 표시
+                    // 변경된 값 Route 구조체에 저장
+                    print("구조체 저장: \(name), \(longitude), \(latitude)")
+                    self.route.startAddress = name
+                    self.route.startLon = longitude
+                    self.route.startLat = latitude
+                }
+                
             }
         }
     }
