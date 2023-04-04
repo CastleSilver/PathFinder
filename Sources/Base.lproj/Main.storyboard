@@ -323,6 +323,9 @@
                                             <state key="normal" title="내 위치" image="ic_mylocation">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
+                                            <connections>
+                                                <action selector="myLocationButtonTapped:" destination="EJP-We-e0u" eventType="touchUpInside" id="gAQ-Ya-jxn"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2zQ-AC-n5c">
                                             <rect key="frame" x="196.66666666666663" y="0.0" width="196.33333333333337" height="43.333333333333336"/>
@@ -526,33 +529,29 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="location-pin"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="도착지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJS-kP-sSa">
-                                <rect key="frame" x="275" y="315" width="78" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="도착지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJS-kP-sSa">
+                                <rect key="frame" x="275" y="341" width="78" height="36"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
                                 <color key="textColor" red="0.98039215690000003" green="0.41568627450000001" blue="0.27450980390000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="경로 설정이 완료되었습니다!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oPo-df-416">
-                                <rect key="frame" x="40" y="115" width="198" height="74"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="경로 설정이 완료되었습니다!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oPo-df-416">
+                                <rect key="frame" x="39.999999999999986" y="115" width="197.66666666666663" height="76"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="31"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <size key="shadowOffset" width="0.0" height="2"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="출발지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RoA-LJ-yyX">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="출발지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RoA-LJ-yyX">
                                 <rect key="frame" x="40" y="205" width="78" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
                                 <color key="textColor" red="0.32156862749999998" green="0.74509803919999995" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gla-67-7gV">
-                                <rect key="frame" x="40" y="249" width="42" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gla-67-7gV">
+                                <rect key="frame" x="40" y="251" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -581,10 +580,9 @@
                                     <action selector="backButtonTapped:" destination="Yvp-iZ-GaV" eventType="touchUpInside" id="SA9-di-j4w"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1oc-q8-EJV">
-                                <rect key="frame" x="311" y="359" width="42" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1oc-q8-EJV">
+                                <rect key="frame" x="353" y="387" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -592,6 +590,16 @@
                         <viewLayoutGuide key="safeArea" id="N9Q-HF-wfW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="N9Q-HF-wfW" firstAttribute="trailing" secondItem="1oc-q8-EJV" secondAttribute="trailing" constant="40" id="1I4-8b-UPn"/>
+                            <constraint firstItem="lhS-XK-QcM" firstAttribute="top" secondItem="tJS-kP-sSa" secondAttribute="bottom" constant="70" id="1oO-uT-ik6"/>
+                            <constraint firstItem="oPo-df-416" firstAttribute="top" secondItem="axe-mf-k07" secondAttribute="bottom" constant="24" id="2bc-G0-5ZO"/>
+                            <constraint firstItem="oPo-df-416" firstAttribute="leading" secondItem="N9Q-HF-wfW" secondAttribute="leading" constant="40" id="JuK-op-rzW"/>
+                            <constraint firstItem="RoA-LJ-yyX" firstAttribute="top" secondItem="oPo-df-416" secondAttribute="bottom" constant="14" id="Ob9-5g-hmI"/>
+                            <constraint firstItem="gla-67-7gV" firstAttribute="top" secondItem="RoA-LJ-yyX" secondAttribute="bottom" constant="10" id="TOi-3z-ZZC"/>
+                            <constraint firstItem="gla-67-7gV" firstAttribute="leading" secondItem="N9Q-HF-wfW" secondAttribute="leading" constant="40" id="Ytt-Qd-Mnl"/>
+                            <constraint firstItem="N9Q-HF-wfW" firstAttribute="trailing" secondItem="tJS-kP-sSa" secondAttribute="trailing" constant="40" id="bRk-eC-bXk"/>
+                            <constraint firstItem="RoA-LJ-yyX" firstAttribute="leading" secondItem="N9Q-HF-wfW" secondAttribute="leading" constant="40" id="gTL-QW-zXe"/>
+                            <constraint firstItem="1oc-q8-EJV" firstAttribute="top" secondItem="tJS-kP-sSa" secondAttribute="bottom" constant="10" id="iqH-MX-ItN"/>
                             <constraint firstItem="axe-mf-k07" firstAttribute="top" secondItem="XIa-XF-OQ8" secondAttribute="top" constant="51" id="qfd-oy-JNm"/>
                             <constraint firstItem="lhS-XK-QcM" firstAttribute="leading" secondItem="N9Q-HF-wfW" secondAttribute="leading" constant="60" id="svK-un-PGQ"/>
                             <constraint firstItem="axe-mf-k07" firstAttribute="leading" secondItem="N9Q-HF-wfW" secondAttribute="leading" constant="16" id="uc4-pR-jRL"/>

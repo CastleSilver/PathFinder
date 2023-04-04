@@ -37,12 +37,15 @@ class MainViewController: UIViewController {
         /// 지도 유형 설정
         setMapSetting()
         buttonSetting()
-        addNotiObserver()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if arrivalLabel.text != "" {
+            nextButton.backgroundColor = UIColor(red: 82/255, green: 190/255, blue: 214/255, alpha: 1)
+            nextButton.isEnabled = true
+        }
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
@@ -50,6 +53,11 @@ class MainViewController: UIViewController {
     @IBAction func nextButtonTapped(_ sender: Any) {
         print("다음 버튼 클릭")
         guard let rvc = self.storyboard?.instantiateViewController(withIdentifier: "ResultViewController") as? ResultViewController else { return }
+        guard let start = startLabel.text else { return }
+        guard let arrival = arrivalLabel.text else { return }
+        print(start)
+        rvc.start = start
+        rvc.arrival = arrival
         self.navigationController?.pushViewController(rvc, animated: true)
     }
 
@@ -77,55 +85,9 @@ class MainViewController: UIViewController {
     }
     
     // MARK: - Methods
-    // noticenter 말고 route struct 사용하기
-    func updateLabel() {
-        switch flag {
-        case "출발지":
-            if startLabel.text != route.startAddress {
-                startLabel.text = route.startAddress
-            }
-        case "도착지":
-            if arrivalLabel.text != route.arrivalAddress {
-                arrivalLabel.text = route.arrivalAddress
-                nextButton.backgroundColor = UIColor(red: 82/255, green: 190/255, blue: 214/255, alpha: 1)
-                nextButton.isEnabled = true
-            }
-        default:
-            break
-        }
-    }
-    
-    func addNotiObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewPoped), name: NSNotification.Name("address"), object: nil)
-    }
-    
-    @objc func ViewPoped(notification: NSNotification) {
-        print("noti 메서드 실행")
-        if let address = notification.object as? Array<String> {
-            print("\(address[0]), \(address[1])")
-            switch address[0] {
-            case "출발지":
-                startLabel.text = address[1]
-            case "도착지":
-                arrivalLabel.text = address[1]
-                nextButton.backgroundColor = UIColor(red: 82/255, green: 190/255, blue: 214/255, alpha: 1)
-                nextButton.isEnabled = true
-            default:
-                break
-            }
-        }
-    }
-    
     private func buttonSetting() {
         nextButton.layer.cornerRadius = 5
         locationButton.tintColor = UIColor(red: 82/255, green: 190/255, blue: 214/255, alpha: 1)
-        // next Button
-        if arrivalLabel.text != "" {
-            print("도착지 버튼 활성화")
-            print(arrivalLabel.text)
-            nextButton.backgroundColor = UIColor(red: 82/255, green: 190/255, blue: 214/255, alpha: 1)
-            nextButton.isEnabled = false
-        }
     }
     
     func setMyLocationMarker() {
@@ -231,11 +193,15 @@ extension MainViewController: NMFMapViewDelegate {
             }
             
             DispatchQueue.main.async {
-                self.startLabel.text = placemark.name // 'startLabel'에 주소를 표시
-                // 변경된 값 Route 구조체에 저장
-                self.route.startAddress = placemark.name ?? ""
-                self.route.startLon = longitude
-                self.route.startLat = latitude
+                if let name = placemark.name {
+                    self.startLabel.text = name // 'startLabel'에 주소를 표시
+                    // 변경된 값 Route 구조체에 저장
+                    print("구조체 저장: \(name), \(longitude), \(latitude)")
+                    self.route.startAddress = name
+                    self.route.startLon = longitude
+                    self.route.startLat = latitude
+                }
+                
             }
         }
     }

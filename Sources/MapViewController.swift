@@ -42,10 +42,25 @@ class MapViewController: UIViewController {
     @IBAction func setButtonTapped(_ sender: Any) {
         guard let navi = self.navigationController else { return }
         let vcArr = navi.viewControllers.filter { $0 is MainViewController }
-                if vcArr.count > 0, let vc = vcArr[0] as? MainViewController {
-                    vc.flag = self.flag
+        if vcArr.count > 0, let vc = vcArr[0] as? MainViewController {
+            if let dest = self.customMarker?.position {
+                switch flag {
+                case "출발지":
+                    vc.startLabel?.text = addressLabel.text
+                    route.startAddress = addressLabel.text ?? ""
+                    route.startLon = dest.lng
+                    route.startLat = dest.lat
+                case "도착지":
+                    vc.arrivalLabel?.text = addressLabel.text ?? ""
+                    route.arrivalAddress = addressLabel.text ?? ""
+                    route.arrivalLon = dest.lng
+                    route.arrivalLat = dest.lat
+                default:
+                    break
                 }
-        self.navigationController?.popToRootViewController(animated: true)
+            }
+            navi.popToViewController(vc, animated: true)
+        }
     }
     
     @IBAction func locationButtonTapped(_ sender: Any) {
@@ -155,18 +170,6 @@ extension MapViewController: NMFMapViewDelegate {
             
             DispatchQueue.main.async {
                 self.addressLabel.text = placemark.name // 'addressLabel'에 주소를 표시
-                switch self.flag {
-                case "출발지":
-                    self.route.startAddress = placemark.name ?? ""
-                    self.route.startLon = longitude
-                    self.route.startLat = latitude
-                case "도착지":
-                    self.route.arrivalAddress = placemark.name ?? ""
-                    self.route.arrivalLat = latitude
-                    self.route.arrivalLon = longitude
-                default:
-                    break
-                }
             }
         }
     }

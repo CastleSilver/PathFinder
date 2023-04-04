@@ -20,11 +20,13 @@ class SearchViewController: UITableViewController {
         }
     }
 
+    let locationManager = CLLocationManager()
     var searchResult: SearchResult?
     var flag: String = ""
     var centerLon: Float = 0
     var centerLat: Float = 0
     var pois: [Poi] = []
+    var route = Route.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +41,34 @@ class SearchViewController: UITableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         searchBar?.resignFirstResponder()
+    }
+    
+    @IBAction func myLocationButtonTapped(_ sender: Any) {
+        guard let navi = self.navigationController else { return }
+        let vcArr = navi.viewControllers.filter { $0 is MainViewController }
+        if vcArr.count > 0, let mvc = vcArr[0] as? MainViewController {
+            if let myLocation = locationManager.location?.coordinate {
+                let geocoder = CLGeocoder()
+                geocoder.reverseGeocodeLocation(CLLocation(latitude: myLocation.latitude, longitude: myLocation.longitude)) { placemarks, error in
+                    guard let placemark = placemarks?.first else { return }
+                    switch self.flag {
+                    case "출발지":
+                        mvc.startLabel.text = placemark.name
+                        self.route.startAddress = placemark.name ?? ""
+                        self.route.startLon = myLocation.longitude
+                        self.route.startLat = myLocation.latitude
+                    case "도착지":
+                        mvc.arrivalLabel.text = placemark.name
+                        self.route.arrivalAddress = placemark.name ?? ""
+                        self.route.arrivalLon = myLocation.longitude
+                        self.route.arrivalLat = myLocation.latitude
+                    default:
+                        break
+                    }
+                }
+            }
+        }
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func mapButtonTapped(_ sender: Any) {
@@ -196,15 +226,22 @@ extension SearchViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("table cell 클릭")
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let svc = self.storyboard?.instantiateViewController(withIdentifier: "MapViewController") as? MapViewController else { return }
-        guard let searchResult = searchResult?.searchPoiInfo.pois.poi[indexPath.row] else { return }
-        // UserHistory에 저장
-        saveSearchHistory(searchResult)
-        svc.centerLon = Double(searchResult.noorLon)
-        svc.centerLat = Double(searchResult.noorLat)
-        svc.flag = self.flag
-        self.navigationController?.pushViewController(svc, animated: true)
+        guard let mvc = self.storyboard?.instantiateViewController(withIdentifier: "MapViewController") as? MapViewController else { return }
+        if let search = self.searchResult {
+            let searchResult = search.searchPoiInfo.pois.poi[indexPath.row]
+            saveSearchHistory(searchResult)
+            mvc.centerLon = Double(searchResult.noorLon) ?? 0
+            mvc.centerLat = Double(searchResult.noorLat) ?? 0
+            mvc.flag = self.flag
+        } else {
+            let searchResult = loadSearchHistory()[indexPath.row]
+            mvc.centerLon = Double(searchResult.noorLon) ?? 0
+            mvc.centerLat = Double(searchResult.noorLat) ?? 0
+            mvc.flag = self.flag
+        }
+        self.navigationController?.pushViewController(mvc, animated: true)
     }
 }
 
