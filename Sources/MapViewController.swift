@@ -23,6 +23,7 @@ class MapViewController: UIViewController {
     var customMarker: NMFMarker?
     var centerLon: Double?
     var centerLat: Double?
+    var route = Route.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -148,7 +149,19 @@ extension MapViewController: NMFMapViewDelegate {
             }
             
             DispatchQueue.main.async {
-                self.addressLabel.text = placemark.name // 'startLabel'에 주소를 표시
+                self.addressLabel.text = placemark.name // 'addressLabel'에 주소를 표시
+                switch self.flag {
+                case "출발지":
+                    self.route.startAddress = placemark.name ?? ""
+                    self.route.startLon = longitude
+                    self.route.startLat = latitude
+                case "도착지":
+                    self.route.arrivalAddress = placemark.name ?? ""
+                    self.route.arrivalLat = latitude
+                    self.route.arrivalLon = longitude
+                default:
+                    break
+                }
             }
         }
     }

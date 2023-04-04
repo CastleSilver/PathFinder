@@ -19,7 +19,7 @@ class SearchViewController: UITableViewController {
             searchBar?.delegate = self
         }
     }
-    
+
     var searchResult: SearchResult?
     var flag: String = ""
     var centerLon: Float = 0
@@ -33,6 +33,7 @@ class SearchViewController: UITableViewController {
         searchBarUISetting()
         initUI()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -47,6 +48,36 @@ class SearchViewController: UITableViewController {
         self.navigationController?.pushViewController(svc, animated: true)
     }
     
+    
+    // UserDefaults에서 검색어 목록을 불러오는 함수
+    func loadSearchHistory() -> [Poi] {
+        guard let data = UserDefaults.standard.data(forKey: "SearchHistory"),
+              let searchList = try? JSONDecoder().decode([Poi].self, from: data) else {
+            return [Poi]()
+        }
+        return searchList
+    }
+
+    // UserDefaults에 검색어를 저장하는 함수
+    func saveSearchHistory(_ searchKeyword: Poi) {
+        // UserDefaults에서 검색어 목록을 불러옵니다.
+        var searchList = loadSearchHistory()
+
+        // 검색어를 검색어 목록에 추가합니다.
+        searchList.insert(searchKeyword, at: 0)
+        
+        // 최근 10개의 검색어만 저장합니다.
+        if searchList.count > 10 {
+            searchList.removeLast()
+        }
+        
+        // 검색어 목록을 UserDefaults에 저장합니다.
+        guard let data = try? JSONEncoder().encode(searchList) else {
+            return
+        }
+        UserDefaults.standard.set(data, forKey: "SearchHistory")
+    }
+
     func initUI() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -126,24 +157,37 @@ class SearchViewController: UITableViewController {
 extension SearchViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if ((searchBar?.text?.isEmpty) != nil), loadSearchHistory().count != 0 {
+            print("(\(loadSearchHistory().count)의 셀 존재")
+            return loadSearchHistory().count
+        }
         return searchResult?.searchPoiInfo.pois.poi.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as? SearchResultCell else { return UITableViewCell() }
-        let searchResult = searchResult?.searchPoiInfo.pois.poi[indexPath.row]
-        cell.nameLabel.text = searchResult?.name
-        cell.addressLabel.text = searchResult?.newAddressList.newAddress[0].fullAddressRoad
-        var distance = Double(searchResult?.radius ?? "") ?? 0.0
-        distance = distance * 1000
-        if distance < 1000 {
-            cell.distLabel.text = "\(distance) m"
+        
+        if ((searchBar?.text?.isEmpty) != nil), loadSearchHistory().count != 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as? SearchResultCell else { return UITableViewCell() }
+            let searchResult = loadSearchHistory()[indexPath.row]
+            print(searchResult.name)
+            cell.nameLabel.text = searchResult.name
+            cell.addressLabel.text = searchResult.newAddressList.newAddress[0].fullAddressRoad
+            cell.distLabel.isHidden = true
+            return cell
         } else {
-            cell.distLabel.text = "\(distance/1000) km"
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as? SearchResultCell else { return UITableViewCell() }
+            let searchResult = searchResult?.searchPoiInfo.pois.poi[indexPath.row]
+            cell.nameLabel.text = searchResult?.name
+            cell.addressLabel.text = searchResult?.newAddressList.newAddress[0].fullAddressRoad
+            var distance = Double(searchResult?.radius ?? "") ?? 0.0
+            distance = distance * 1000
+            if distance < 1000 {
+                cell.distLabel.text = "\(distance) m"
+            } else {
+                cell.distLabel.text = "\(distance/1000) km"
+            }
+            return cell
         }
-        
-        
-        return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -153,9 +197,11 @@ extension SearchViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let svc = self.storyboard?.instantiateViewController(withIdentifier: "MapViewController") as? MapViewController else { return }
-        let searchResult = searchResult?.searchPoiInfo.pois.poi[indexPath.row]
-        svc.centerLon = Double(searchResult?.noorLon ?? "")
-        svc.centerLat = Double(searchResult?.noorLat ?? "")
+        guard let searchResult = searchResult?.searchPoiInfo.pois.poi[indexPath.row] else { return }
+        // UserHistory에 저장
+        saveSearchHistory(searchResult)
+        svc.centerLon = Double(searchResult.noorLon)
+        svc.centerLat = Double(searchResult.noorLat)
         svc.flag = self.flag
         self.navigationController?.pushViewController(svc, animated: true)
     }

@@ -24,6 +24,7 @@ class MainViewController: UIViewController {
     let locationManager = CLLocationManager()
     var mylocationMarker: NMFMarker? // 내 위치 마커
     var startMarker: NMFMarker? // 출발 위치 마커
+    var route = Route.shared
     
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
@@ -35,6 +36,7 @@ class MainViewController: UIViewController {
         /// 지도 유형 설정
         setMapSetting()
         buttonSetting()
+        addNotiObserver()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
     }
     
@@ -44,8 +46,13 @@ class MainViewController: UIViewController {
     }
     
     // MARK: - Action Methods
-    @IBAction func StartTabButton(_ sender: Any) {
+    @IBAction func nextButtonTapped(_ sender: Any) {
         print("다음 버튼 클릭")
+        guard let rvc = self.storyboard?.instantiateViewController(withIdentifier: "ResultViewController") as? ResultViewController else { return }
+        self.navigationController?.pushViewController(rvc, animated: true)
+    }
+
+    @IBAction func StartTabButton(_ sender: Any) {
         guard let svc = self.storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as? SearchViewController else { return }
         svc.flag = "출발지"
         svc.centerLat = Float(locationManager.location?.coordinate.latitude ?? 37.5)
@@ -69,9 +76,38 @@ class MainViewController: UIViewController {
     }
     
     // MARK: - Methods
+    // noticenter 말고 route struct 사용하기
+    func addNotiObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewPoped), name: NSNotification.Name("address"), object: nil)
+    }
+    
+    @objc func ViewPoped(notification: NSNotification) {
+        print("noti 메서드 실행")
+        if let address = notification.object as? Array<String> {
+            print("\(address[0]), \(address[1])")
+            switch address[0] {
+            case "출발지":
+                startLabel.text = address[1]
+            case "도착지":
+                arrivalLabel.text = address[1]
+                nextButton.backgroundColor = UIColor(red: 82/255, green: 190/255, blue: 214/255, alpha: 1)
+                nextButton.isEnabled = true
+            default:
+                break
+            }
+        }
+    }
+    
     private func buttonSetting() {
-        self.nextButton.layer.cornerRadius = 5
+        nextButton.layer.cornerRadius = 5
         locationButton.tintColor = UIColor(red: 82/255, green: 190/255, blue: 214/255, alpha: 1)
+        // next Button
+        if arrivalLabel.text != "" {
+            print("도착지 버튼 활성화")
+            print(arrivalLabel.text)
+            nextButton.backgroundColor = UIColor(red: 82/255, green: 190/255, blue: 214/255, alpha: 1)
+            nextButton.isEnabled = false
+        }
     }
     
     func setMyLocationMarker() {
@@ -178,6 +214,10 @@ extension MainViewController: NMFMapViewDelegate {
             
             DispatchQueue.main.async {
                 self.startLabel.text = placemark.name // 'startLabel'에 주소를 표시
+                // 변경된 값 Route 구조체에 저장
+                self.route.startAddress = placemark.name ?? ""
+                self.route.startLon = longitude
+                self.route.startLat = latitude
             }
         }
     }
