@@ -25,6 +25,7 @@ class MainViewController: UIViewController {
     var mylocationMarker: NMFMarker? // 내 위치 마커
     var startMarker: NMFMarker? // 출발 위치 마커
     var route = Route.shared
+    var flag: String = "출발지"
     
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
@@ -77,6 +78,23 @@ class MainViewController: UIViewController {
     
     // MARK: - Methods
     // noticenter 말고 route struct 사용하기
+    func updateLabel() {
+        switch flag {
+        case "출발지":
+            if startLabel.text != route.startAddress {
+                startLabel.text = route.startAddress
+            }
+        case "도착지":
+            if arrivalLabel.text != route.arrivalAddress {
+                arrivalLabel.text = route.arrivalAddress
+                nextButton.backgroundColor = UIColor(red: 82/255, green: 190/255, blue: 214/255, alpha: 1)
+                nextButton.isEnabled = true
+            }
+        default:
+            break
+        }
+    }
+    
     func addNotiObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(ViewPoped), name: NSNotification.Name("address"), object: nil)
     }

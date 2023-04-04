@@ -76,6 +76,9 @@ class SearchViewController: UITableViewController {
             return
         }
         UserDefaults.standard.set(data, forKey: "SearchHistory")
+        
+        // 테이블 뷰를 업데이트합니다.
+        self.tableView.reloadData()
     }
 
     func initUI() {
@@ -157,37 +160,35 @@ class SearchViewController: UITableViewController {
 extension SearchViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if ((searchBar?.text?.isEmpty) != nil), loadSearchHistory().count != 0 {
-            print("(\(loadSearchHistory().count)의 셀 존재")
+        if let searchResult = self.searchResult {
+            return searchResult.searchPoiInfo.pois.poi.count ?? 0
+        } else {
             return loadSearchHistory().count
         }
-        return searchResult?.searchPoiInfo.pois.poi.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        if ((searchBar?.text?.isEmpty) != nil), loadSearchHistory().count != 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as? SearchResultCell else { return UITableViewCell() }
-            let searchResult = loadSearchHistory()[indexPath.row]
-            print(searchResult.name)
-            cell.nameLabel.text = searchResult.name
-            cell.addressLabel.text = searchResult.newAddressList.newAddress[0].fullAddressRoad
-            cell.distLabel.isHidden = true
-            return cell
-        } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as? SearchResultCell else { return UITableViewCell() }
-            let searchResult = searchResult?.searchPoiInfo.pois.poi[indexPath.row]
-            cell.nameLabel.text = searchResult?.name
-            cell.addressLabel.text = searchResult?.newAddressList.newAddress[0].fullAddressRoad
-            var distance = Double(searchResult?.radius ?? "") ?? 0.0
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath) as? SearchResultCell else { return UITableViewCell() }
+        if let searchResult = self.searchResult {
+            let poi = searchResult.searchPoiInfo.pois.poi[indexPath.row]
+            cell.nameLabel.text = poi.name
+            cell.addressLabel.text = poi.newAddressList.newAddress[0].fullAddressRoad
+            var distance = Double(poi.radius) ?? 0.0
             distance = distance * 1000
             if distance < 1000 {
                 cell.distLabel.text = "\(distance) m"
             } else {
                 cell.distLabel.text = "\(distance/1000) km"
             }
-            return cell
+        } else {
+            let searchResult = loadSearchHistory()[indexPath.row]
+            print(searchResult.name)
+            cell.nameLabel.text = searchResult.name
+            cell.addressLabel.text = searchResult.newAddressList.newAddress[0].fullAddressRoad
+            cell.distLabel.isHidden = true
         }
+        
+        return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -216,4 +217,3 @@ extension SearchViewController: UISearchBarDelegate {
     }
     
 }
-

@@ -40,6 +40,11 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func setButtonTapped(_ sender: Any) {
+        guard let navi = self.navigationController else { return }
+        let vcArr = navi.viewControllers.filter { $0 is MainViewController }
+                if vcArr.count > 0, let vc = vcArr[0] as? MainViewController {
+                    vc.flag = self.flag
+                }
         self.navigationController?.popToRootViewController(animated: true)
     }
     
