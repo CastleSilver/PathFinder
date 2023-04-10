@@ -30,7 +30,6 @@
 		5CD3551D29C1514400419724 /* ViewSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD3551C29C1514400419724 /* ViewSetting.swift */; };
 		5CEA287A29D26EF0001C7ACF /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEA287929D26EF0001C7ACF /* SearchResult.swift */; };
 		5CEA287F29D27B51001C7ACF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 5CEA287E29D27B51001C7ACF /* Alamofire */; };
-		5CEA288D29D33AA0001C7ACF /* PathFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEA288C29D33AA0001C7ACF /* PathFinderTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,7 +83,6 @@
 		5CD3551C29C1514400419724 /* ViewSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSetting.swift; sourceTree = "<group>"; };
 		5CEA287929D26EF0001C7ACF /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		5CEA288A29D33AA0001C7ACF /* PathFinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PathFinderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5CEA288C29D33AA0001C7ACF /* PathFinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathFinderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,10 +108,6 @@
 		5C4F3C7F29B8521E00A219AF = {
 			isa = PBXGroup;
 			children = (
-				5CD268C029D3CCA5009063FE /* TableViewDataSourceTests.swift */,
-				5CD268BE29D3C568009063FE /* LocationTest.swift */,
-				5CD268BA29D33C74009063FE /* ViewTest.swift */,
-				5C4F3CA029B8523600A219AF /* Tests */,
 				5C4F3C9F29B8522F00A219AF /* Resources */,
 				5C4F3C8A29B8521E00A219AF /* Sources */,
 				5CEA288B29D33AA0001C7ACF /* PathFinderTests */,
@@ -135,22 +129,16 @@
 		5C4F3C8A29B8521E00A219AF /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				5C4F3C8B29B8521E00A219AF /* AppDelegate.swift */,
-				5C4F3C8D29B8521E00A219AF /* SceneDelegate.swift */,
-				5C4F3C8F29B8521E00A219AF /* SplashViewController.swift */,
+				5C8A16D729E3A3BD004714C7 /* Cells */,
+				5C8A16D629E3A2A7004714C7 /* Controllers */,
+				5C8A16D529E3A29F004714C7 /* Common */,
+				5C8A16D429E3A295004714C7 /* Models */,
+				5C8A16D329E3A285004714C7 /* ViewModels */,
 				5C4F3C9129B8521E00A219AF /* Main.storyboard */,
 				5C4F3C9429B8521F00A219AF /* Assets.xcassets */,
 				5C4F3C9929B8521F00A219AF /* Info.plist */,
 				5C4F3CA729B99B4900A219AF /* LaunchScreen.storyboard */,
-				5C4F3CA929BAD6FE00A219AF /* MainViewController.swift */,
-				5CD3551C29C1514400419724 /* ViewSetting.swift */,
-				5C64364029C434260008C56F /* SearchViewController.swift */,
-				5CEA287929D26EF0001C7ACF /* SearchResult.swift */,
 				5CD268C429D3D9CB009063FE /* SearchResultCell.xib */,
-				5CD268C629D42383009063FE /* SearchResultCell.swift */,
-				5CD268EE29D83020009063FE /* MapViewController.swift */,
-				5CD268F029DA6D17009063FE /* ResultViewController.swift */,
-				5CAC7D5629DB1B6400279E92 /* Route.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -164,18 +152,59 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		5C4F3CA029B8523600A219AF /* Tests */ = {
+		5C8A16D329E3A285004714C7 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Tests;
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		5C8A16D429E3A295004714C7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5CEA287929D26EF0001C7ACF /* SearchResult.swift */,
+				5CAC7D5629DB1B6400279E92 /* Route.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5C8A16D529E3A29F004714C7 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				5C4F3C8B29B8521E00A219AF /* AppDelegate.swift */,
+				5C4F3C8D29B8521E00A219AF /* SceneDelegate.swift */,
+				5CD3551C29C1514400419724 /* ViewSetting.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		5C8A16D629E3A2A7004714C7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5C4F3CA929BAD6FE00A219AF /* MainViewController.swift */,
+				5C64364029C434260008C56F /* SearchViewController.swift */,
+				5CD268EE29D83020009063FE /* MapViewController.swift */,
+				5C4F3C8F29B8521E00A219AF /* SplashViewController.swift */,
+				5CD268F029DA6D17009063FE /* ResultViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		5C8A16D729E3A3BD004714C7 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				5CD268C629D42383009063FE /* SearchResultCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		5CEA288B29D33AA0001C7ACF /* PathFinderTests */ = {
 			isa = PBXGroup;
 			children = (
+				5CD268C029D3CCA5009063FE /* TableViewDataSourceTests.swift */,
+				5CD268BE29D3C568009063FE /* LocationTest.swift */,
+				5CD268BA29D33C74009063FE /* ViewTest.swift */,
 				5CD268CC29D45D48009063FE /* TMapAPITests.swift */,
-				5CEA288C29D33AA0001C7ACF /* PathFinderTests.swift */,
 			);
 			path = PathFinderTests;
 			sourceTree = "<group>";
@@ -373,7 +402,6 @@
 				5CD268BB29D33C74009063FE /* ViewTest.swift in Sources */,
 				5CD268BF29D3C568009063FE /* LocationTest.swift in Sources */,
 				5CD268C129D3CCA5009063FE /* TableViewDataSourceTests.swift in Sources */,
-				5CEA288D29D33AA0001C7ACF /* PathFinderTests.swift in Sources */,
 				5CD268CD29D45D48009063FE /* TMapAPITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -450,7 +478,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -504,7 +532,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -543,7 +571,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -601,7 +629,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
