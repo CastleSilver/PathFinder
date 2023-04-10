@@ -6,7 +6,7 @@
 
 + 프로젝트명: Path Finder
 + 한줄 소개: 아주 심플하고 단순한 길 찾기 앱
-+ 기간: 2023. 3. 6 ~ 23. 4. 6
++ 기간: 2023. 3. 6 ~ 4. 6
 + 사용 기술:
   + 관리: Github, Notion
   + 언어: Swift 5
@@ -39,7 +39,7 @@
 
 </br>
 
-## 📚 주요 기능
+## 📚 기능 
 ### Splash View
 + 프로젝트 로고를 확인할 수 있다.
 + lottie animation을 확인할 수 있다.
@@ -75,3 +75,44 @@
 + 출발지/도착지를 어디로 설정하였는지 확인 가능하다.
 + lottie animation이 화면에 생성된다.
 + 좌측 상단에 back button을 눌러 main view로 이동할 수 있다.
+
+</br>
+
+---
+
+</br>
+
+## 🌳 프로젝트 구조
+```
+├── PathFinderTests
+│   ├── LocationTest.swift
+│   ├── TableViewDataSourceTests.swift
+│   └── ViewTest.swift
+├── Podfile
+├── Resources
+│   ├── location-pin.json
+│   └── splash-image.json
+├── Sources
+│   ├── Base.lproj
+│   │   └── Main.storyboard
+│   ├── Cells
+│   │   └── SearchResultCell.swift
+│   ├── Common
+│   │   ├── AppDelegate.swift
+│   │   ├── SceneDelegate.swift
+│   │   └── ViewSetting.swift
+│   ├── Controllers
+│   │   ├── MainViewController.swift
+│   │   ├── MapViewController.swift
+│   │   ├── ResultViewController.swift
+│   │   ├── SearchViewController.swift
+│   │   └── SplashViewController.swift
+│   ├── Info.plist
+│   ├── LaunchScreen.storyboard
+│   ├── Models
+│   │   ├── Route.swift
+│   │   └── SearchResult.swift
+│   ├── SearchResultCell.xib
+└── └── ViewModels
+
+```
